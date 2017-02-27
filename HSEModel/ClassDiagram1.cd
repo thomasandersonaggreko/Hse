@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="HSEModel.Report">
+    <Position X="10" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QBAAAQAABAAABQACgAIgAAAAAEIAQAAARAAAAwIBMAA=</HashCode>
+      <FileName>Report.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HSEModel.AcidentRoadTrafficReport">
+    <Position X="5.5" Y="1.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAACAAACAgAAIAgAAEAAAAAAAQgAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>AcidentRoadTrafficReport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HSEModel.OccupationalIllnessReport">
+    <Position X="3" Y="1.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAAAAgAAAAAAAAgAAAAACCAAAAAAAAAAAA=</HashCode>
+      <FileName>OccupationalIllnessReport.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HSEModel.RiskOfEnviornmentalIncident">
+    <Position X="1" Y="8" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>RiskOfEnviornmentalIncident.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HSEModel.EnviornmentalIncident">
+    <Position X="8" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAoAAAAAAAAAAAAAAARAAAACAAAAAAAAAAAg=</HashCode>
+      <FileName>EnviornmentalIncident.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HSEModel.HighPotentialIncident">
+    <Position X="0.75" Y="1.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>HighPotentialIncident.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HSEModel.PropertyDamage">
+    <Position X="10.5" Y="1.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAgAAAAAAAAAAAAAAACAAAAAAAAAAAg=</HashCode>
+      <FileName>PropertyDamage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HSEModel.RiskOfOccupationalIllness">
+    <Position X="6" Y="8" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RiskOfOccupationalIllness.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HSEModel.RiskOfRoadTrafficIncident">
+    <Position X="3.5" Y="8.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAAAAAAAAgAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>RiskOfRoadTrafficIncident.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HSEModel.Risk">
+    <Position X="12.25" Y="4.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>QBAIAQBABAAAAQkCgAAgAAAAAEBAAACgQAAAIwIIMAg=</HashCode>
+      <FileName>Risk.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="HSEModel.WorkplaceInjury">
+    <Position X="12.75" Y="1.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAACAgAAAAgAAAAAAAAgAQAAACCAAAAAAAAAAAg=</HashCode>
+      <FileName>WorkplaceInjury.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
