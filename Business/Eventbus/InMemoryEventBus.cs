@@ -18,6 +18,8 @@ namespace Business.Eventbus
 
         private IServiceContainer container;
 
+        private IEventHandlerFactory eventHandlerFactory;
+
         public InMemoryEventBus()
         {
             this.container = new ServiceContainer();
@@ -31,7 +33,7 @@ namespace Business.Eventbus
         public void Subscribe<T>(IEventHandler<T> handler)
         {
            // this.container.r
-            this.container.RegisterInstance(handler, typeof(T).FullName);
+            this.container.RegisterInstance(handler, $"{"EventHandler"}_{typeof(T).Name}");
             this.container.RegisterInstance(typeof(IEventHandler<T>), handler);
             this.container.RegisterInstance(handler.GetType(), handler);
         }
@@ -39,14 +41,19 @@ namespace Business.Eventbus
         private void ProcessEvent(Tuple<Type, object> item)
         {
             //dynamic d = @event;
-            //Type generic = typeof(IEventHandler<>);
-            //Type[] typeArgs = { d.GetType() };
-            //Type constructed = generic.MakeGenericType(d);
-
-            this.container.GetInstance(item.Item1, item.Item1.FullName);
+            Type generic = typeof(IEventHandler<>);
+            Type[] typeArgs = { item.Item2.GetType() };
+            Type constructed = generic.MakeGenericType(typeArgs);
+            //this.eventHandlerFactory.Resolve<T>();
+            this.container.GetInstance(constructed, $"{"EventHandler"}_{item.GetType().Name}");
            
             var handlers = this.container.GetAllInstances(item.Item1).ToList();
         }
 
+    }
+
+    public interface IEventHandlerFactory
+    {
+        IEventHandler<T> Resolve<T>();
     }
 }

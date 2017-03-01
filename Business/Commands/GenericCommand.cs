@@ -58,7 +58,7 @@
 
         #endregion
 
-        public virtual CommandResult Execute(IPrincipal user)
+        public override CommandResult Execute(IPrincipal user)
         {
             try
             {
