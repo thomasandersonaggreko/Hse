@@ -9,4 +9,12 @@ namespace Contracts
     {
         void Notify<T>(BusinessEvent<T> businessEvent) where T : DomainObject;
     }
+
+    public class Notifier : INotifier
+    {
+        public void Notify<T>(BusinessEvent<T> businessEvent) where T : DomainObject
+        {
+            
+        }
+    }
 }

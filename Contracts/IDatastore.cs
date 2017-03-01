@@ -2,6 +2,8 @@ namespace Contracts
 {
     using System.Linq;
 
+   
+
     public interface IDatastore
     {
         void Save<T>(T domainObject);

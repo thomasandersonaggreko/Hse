@@ -4,4 +4,12 @@
     {
         string Generate();
     }
+
+    public class ReferenceNumberGenerator : IReferenceNumberGenerator
+    {
+        public string Generate()
+        {
+            return "Test";
+        }
+    }
 }

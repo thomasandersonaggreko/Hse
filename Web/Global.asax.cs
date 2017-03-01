@@ -8,11 +8,40 @@ using System.Web.Routing;
 
 namespace Web
 {
+    using Business.Commands;
+    using Business.Queries;
+
+    using Contracts;
+
+    using Data;
+
+    using HSEModel;
+
+    using LightInject;
+
     public class MvcApplication : System.Web.HttpApplication
     {
         protected void Application_Start()
         {
-            AreaRegistration.RegisterAllAreas();
+            var container = new ServiceContainer();
+            container.RegisterControllers();
+            container.RegisterInstance(typeof(IServiceContainer), container);
+            container.Register<INotifier, Notifier>();
+            container.Register<IDatamapper, NoSqlDatamapper>();
+            container.Register<IDatastore, NoSqlDataStore>();
+            container.Register<IDateTimeProvider, DateTimeProvider>();
+            container.Register<IReferenceNumberGenerator, ReferenceNumberGenerator>();
+            container.Register<SubmitNewReportCommand<HighPotentialIncident>>();
+            container.Register<ReportListViewQuery>();
+
+            container.Register<ICommandFactory, CommandFactory>(new PerContainerLifetime());
+            container.Register<IQueryFactory, QueryFactory>(new PerContainerLifetime());
+
+            //register other services
+
+            container.EnableMvc();
+
+                AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);

@@ -7,6 +7,12 @@ namespace Data
     public class NoSqlDatamapper : IDatamapper
     {
         private IDatastore datastore;
+
+        public NoSqlDatamapper(IDatastore datastore)
+        {
+            this.datastore = datastore;
+        }
+
         public void Save<T>(T domainObject)
         {
             this.datastore.Save(domainObject);

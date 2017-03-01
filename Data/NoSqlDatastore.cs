@@ -10,11 +10,15 @@ namespace Data
 
     using HSEModel.Projections;
 
+    using MongoDB.Bson.Serialization;
     using MongoDB.Driver;
+    using MongoDB.Driver.Linq;
 
     public class NoSqlDataStore : IDatastore
     {
         IMongoDatabase database = new MongoClient().GetDatabase("HSE");
+
+        
 
         public void Save<T>(T domainObject)
         {
@@ -22,7 +26,13 @@ namespace Data
         }
         public IQueryable<T> Query<T>()
         {
-           return this.database.GetCollection<T>("Report").AsQueryable();
+           
+
+            BsonClassMap.RegisterClassMap<ReportListItemProjection>(cm =>
+            {
+                cm.MapMember(c => c.ReferenceNumber);
+            });
+            return this.database.GetCollection<T>("Report").AsQueryable();
         }
 
         //private ICollection<T> GetCollection<T>()

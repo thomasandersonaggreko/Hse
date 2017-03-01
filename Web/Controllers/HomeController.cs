@@ -6,21 +6,35 @@ using System.Web.Mvc;
 
 namespace Web.Controllers
 {
-    public class HomeController : Controller
+    using Business.Commands;
+    using Business.Queries;
+
+    using HSEModel.Projections;
+
+    public partial class HomeController : Controller
     {
-        public ActionResult Index()
+        private IQueryFactory queryFactory;
+
+        public HomeController(IQueryFactory queryFactory)
         {
+            this.queryFactory = queryFactory;
+        }
+        public virtual ActionResult Index()
+        {
+            ReportListViewQuery query = this.queryFactory.GetQuery<ReportListViewQuery>();
+            QueryResult<ReportListItemProjection> queryResult = query.Execute(this.User);
             return View();
         }
 
-        public ActionResult About()
+        public virtual ActionResult About()
         {
+          
             ViewBag.Message = "Your application description page.";
 
             return View();
         }
 
-        public ActionResult Contact()
+        public virtual ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
 
