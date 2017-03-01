@@ -8,6 +8,8 @@ using System.Web.Routing;
 
 namespace Web
 {
+    using System.Collections;
+
     using Business.Commands;
     using Business.Queries;
 
@@ -25,6 +27,8 @@ namespace Web
         {
             var container = new ServiceContainer();
             container.RegisterControllers();
+            container.Register<IStartup, NoSqlStartup>();
+
             container.RegisterInstance(typeof(IServiceContainer), container);
             container.Register<INotifier, Notifier>();
             container.Register<IDatamapper, NoSqlDatamapper>();
@@ -41,7 +45,14 @@ namespace Web
 
             container.EnableMvc();
 
-                AreaRegistration.RegisterAllAreas();
+            IEnumerable<IStartup> startups = container.GetAllInstances<IStartup>();
+
+            foreach (IStartup startup in startups)
+            {
+                startup.Start();
+            }
+
+            AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);

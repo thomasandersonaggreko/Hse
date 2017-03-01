@@ -34,7 +34,7 @@ namespace HSEModel
     
     public abstract class Report : DomainObject
     {
-        public bool ReportedByName { get; set; }
+        public string ReportedByName { get; set; }
 
         [Required]
         public abstract IndicidentType IncidentType { get; }

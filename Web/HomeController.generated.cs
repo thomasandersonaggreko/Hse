@@ -28,9 +28,6 @@ namespace Web.Controllers
     public partial class HomeController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public HomeController() { }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected HomeController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
@@ -76,6 +73,7 @@ namespace Web.Controllers
         public class ActionNamesClass
         {
             public readonly string Index = "Index";
+            public readonly string Reports = "Reports";
             public readonly string About = "About";
             public readonly string Contact = "Contact";
         }
@@ -84,6 +82,7 @@ namespace Web.Controllers
         public class ActionNameConstants
         {
             public const string Index = "Index";
+            public const string Reports = "Reports";
             public const string About = "About";
             public const string Contact = "Contact";
         }
@@ -102,10 +101,12 @@ namespace Web.Controllers
                 public readonly string About = "About";
                 public readonly string Contact = "Contact";
                 public readonly string Index = "Index";
+                public readonly string Reports = "Reports";
             }
             public readonly string About = "~/Views/Home/About.cshtml";
             public readonly string Contact = "~/Views/Home/Contact.cshtml";
             public readonly string Index = "~/Views/Home/Index.cshtml";
+            public readonly string Reports = "~/Views/Home/Reports.cshtml";
         }
     }
 
@@ -122,6 +123,17 @@ namespace Web.Controllers
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Index);
             IndexOverride(callInfo);
+            return callInfo;
+        }
+
+        [NonAction]
+        partial void ReportsOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
+
+        [NonAction]
+        public override System.Web.Mvc.ActionResult Reports()
+        {
+            var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.Reports);
+            ReportsOverride(callInfo);
             return callInfo;
         }
 

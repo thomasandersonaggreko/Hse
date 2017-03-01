@@ -28,9 +28,6 @@ namespace Web.Controllers
     public partial class HighPotentialIncidentController
     {
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
-        public HighPotentialIncidentController() { }
-
-        [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]
         protected HighPotentialIncidentController(Dummy d) { }
 
         [GeneratedCode("T4MVC", "2.0"), DebuggerNonUserCode]

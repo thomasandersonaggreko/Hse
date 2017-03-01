@@ -4,7 +4,7 @@
 
     public abstract class DomainObject
     {
-        public int Id { get; set; }
+        public string Id { get; set; }
 
         public string ReferenceNumber { get; set; }
 

@@ -14,6 +14,25 @@ namespace Data
     using MongoDB.Driver;
     using MongoDB.Driver.Linq;
 
+    public class NoSqlStartup : IStartup
+    {
+        public void Start()
+        {
+            BsonClassMap.RegisterClassMap<ReportListItemProjection>(
+                cm =>
+                    {
+                        cm.MapMember(c => c.Id);
+                        cm.MapMember(c => c.ReportedByName);
+                        cm.MapMember(c => c.IncidentType);
+                        cm.MapMember(c => c.ReferenceNumber);
+                        cm.MapMember(c => c.CreatedBy);
+                        cm.MapMember(c => c.Created);
+                        cm.MapMember(c => c.LastUpdated);
+                        cm.MapMember(c => c.LastUpdatedBy);
+                    });
+        }
+    }
+
     public class NoSqlDataStore : IDatastore
     {
         IMongoDatabase database = new MongoClient().GetDatabase("HSE");
@@ -28,10 +47,7 @@ namespace Data
         {
            
 
-            BsonClassMap.RegisterClassMap<ReportListItemProjection>(cm =>
-            {
-                cm.MapMember(c => c.ReferenceNumber);
-            });
+           
             return this.database.GetCollection<T>("Report").AsQueryable();
         }
 

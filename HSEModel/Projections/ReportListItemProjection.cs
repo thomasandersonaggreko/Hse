@@ -8,7 +8,7 @@ namespace HSEModel.Projections
 {
     public class ReportListItemProjection
     {
-        public bool ReportedByName { get; set; }
+        public string ReportedByName { get; set; }
        
         public IndicidentType IncidentType { get; set; }
 

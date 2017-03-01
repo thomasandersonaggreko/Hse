@@ -23,7 +23,14 @@ namespace Web.Controllers
         {
             ReportListViewQuery query = this.queryFactory.GetQuery<ReportListViewQuery>();
             QueryResult<ReportListItemProjection> queryResult = query.Execute(this.User);
-            return View();
+            return View(MVC.Home.Views.ViewNames.Reports, queryResult.List);
+        }
+
+        public virtual ActionResult Reports()
+        {
+            ReportListViewQuery query = this.queryFactory.GetQuery<ReportListViewQuery>();
+            QueryResult<ReportListItemProjection> queryResult = query.Execute(this.User);
+            return View(queryResult.List);
         }
 
         public virtual ActionResult About()

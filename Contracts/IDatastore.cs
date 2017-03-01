@@ -2,8 +2,11 @@ namespace Contracts
 {
     using System.Linq;
 
-   
 
+    public interface IStartup
+    {
+        void Start();
+    }
     public interface IDatastore
     {
         void Save<T>(T domainObject);
@@ -12,7 +15,7 @@ namespace Contracts
 
     public interface IDatamapper
     {
-        void Save<T>(T domainObject);
+        void Save<T>(T domainObject) where T : DomainObject;
 
         IQueryable<T> Query<T>(IDatastoreQuery query);
     }

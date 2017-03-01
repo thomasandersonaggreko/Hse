@@ -4,6 +4,8 @@ namespace Data
 
     using Contracts;
 
+    using MongoDB.Bson.Serialization.IdGenerators;
+
     public class NoSqlDatamapper : IDatamapper
     {
         private IDatastore datastore;
@@ -13,8 +15,9 @@ namespace Data
             this.datastore = datastore;
         }
 
-        public void Save<T>(T domainObject)
+        public void Save<T>(T domainObject) where T : DomainObject
         {
+            domainObject.Id = StringObjectIdGenerator.Instance.GenerateId(null, domainObject).ToString();
             this.datastore.Save(domainObject);
         }
 

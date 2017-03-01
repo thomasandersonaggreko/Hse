@@ -92,6 +92,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Business\Business.csproj">
+      <Project>{7BC6B637-BFC3-4AA2-90AD-9A387E92C818}</Project>
+      <Name>Business</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Web\Web.csproj">
       <Project>{ADE7FE38-879A-4E2D-A6CB-21C4EF15A953}</Project>
       <Name>Web</Name>
