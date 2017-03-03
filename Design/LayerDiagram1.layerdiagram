@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<layerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="bdde90e3-673e-4fd2-b6cb-3c49308d8a54" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/LayerDesigner">
+  <layers>
+    <layer Id="ed238571-97d8-4580-8bdd-cb110cfcaf43" name="Layer1">
+      <references>
+        <reference Id="474984d2-f934-4884-9d98-b7b711fb9306" name="Data.Sql">
+          <ArtifactNode Label="Data.Sql" Category="CodeSchema_Project" Id="(Assembly=../Data.Sql/Data.Sql.csproj)">
+            <Category Ref="File" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=Data.Sql)" Label="Data.Sql.dll" Category="CodeSchema_Assembly">
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+        <reference Id="f05f5c93-3048-45fd-91c8-f3e9cacce64b" name="Data">
+          <ArtifactNode Label="Data" Category="CodeSchema_Project" Id="(Assembly=../Data/Data.csproj)">
+            <Category Ref="File" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=Data)" Label="Data.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="0b2ceac0-a761-4f30-ba40-a5813b651a23" name="Layer2" />
+  </layers>
+</layerModel>

@@ -8,7 +8,7 @@
 
     using HSEModel.Projections;
 
-    public abstract class GenericQuery<TObject> : Query, IDatastoreQuery
+    public abstract class GenericQuery<TObject> : Query, IDatastoreQuery where TObject : class
     {
         private IDatamapper datamapper;
 
@@ -55,6 +55,6 @@
             return new QueryResult<TObject>(result.ToList());
         }
 
-        public abstract IQueryable<TObject> RunQuery<TObject>(IDatastore datastore);
+        public abstract IQueryable<TObject> RunQuery<TObject>(IDatastore datastore) where TObject : class;
     }
 }

@@ -27,12 +27,12 @@ namespace Web
         {
             var container = new ServiceContainer();
             container.RegisterControllers();
-            container.Register<IStartup, NoSqlStartup>();
+            container.RegisterFrom<NoSqlCompositionRoot>();
+           
 
             container.RegisterInstance(typeof(IServiceContainer), container);
             container.Register<INotifier, Notifier>();
-            container.Register<IDatamapper, NoSqlDatamapper>();
-            container.Register<IDatastore, NoSqlDataStore>();
+            
             container.Register<IDateTimeProvider, DateTimeProvider>();
             container.Register<IReferenceNumberGenerator, ReferenceNumberGenerator>();
             container.Register<SubmitNewReportCommand<HighPotentialIncident>>();

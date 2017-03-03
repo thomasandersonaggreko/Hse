@@ -16,6 +16,7 @@ namespace Business.EventHandlers
     {
         public void Handle(SubmitNewReportCommand<HighPotentialIncident> @event)
         {
+            //TODO: this is were reports would be updated in real time, where appropriate
             throw new NotImplementedException();
         }
     }

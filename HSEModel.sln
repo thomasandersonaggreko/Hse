@@ -23,6 +23,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Tests", "Web.Tests\Web.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Business.Tests", "Business.Tests\Business.Tests.csproj", "{545417AD-297F-4142-A51B-9415673E3EC8}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Data.Sql", "Data.Sql\Data.Sql.csproj", "{686D9394-6CC5-4981-8943-DCD420F4C236}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data Layer", "Data Layer", "{9456508C-59C0-4EB5-A71B-419FFF0AA05F}"
+EndProject
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "Design", "Design\Design.modelproj", "{95016237-37B9-43C6-8438-530741B1D57D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesignLib", "DesignLib\DesignLib.csproj", "{95827B73-FFDE-47FA-8F8B-CFC68B60C1CB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +77,18 @@ Global
 		{545417AD-297F-4142-A51B-9415673E3EC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{545417AD-297F-4142-A51B-9415673E3EC8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{545417AD-297F-4142-A51B-9415673E3EC8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{686D9394-6CC5-4981-8943-DCD420F4C236}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{686D9394-6CC5-4981-8943-DCD420F4C236}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{686D9394-6CC5-4981-8943-DCD420F4C236}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{686D9394-6CC5-4981-8943-DCD420F4C236}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95016237-37B9-43C6-8438-530741B1D57D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95016237-37B9-43C6-8438-530741B1D57D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95016237-37B9-43C6-8438-530741B1D57D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95016237-37B9-43C6-8438-530741B1D57D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{95827B73-FFDE-47FA-8F8B-CFC68B60C1CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{95827B73-FFDE-47FA-8F8B-CFC68B60C1CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{95827B73-FFDE-47FA-8F8B-CFC68B60C1CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{95827B73-FFDE-47FA-8F8B-CFC68B60C1CB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,27 +1,26 @@
-namespace Data
+namespace Data.Sql
 {
+    using System;
     using System.Linq;
 
     using Contracts;
 
-    using MongoDB.Bson.Serialization.IdGenerators;
-
-    public class NoSqlDatamapper : IDatamapper
+    public class SqlDatamapper : IDatamapper
     {
         private IDatastore datastore;
 
-        public NoSqlDatamapper(IDatastore datastore)
+        public SqlDatamapper(IDatastore datastore)
         {
             this.datastore = datastore;
         }
 
         public void Save<T>(T domainObject) where T : DomainObject
         {
-            domainObject.Id = StringObjectIdGenerator.Instance.GenerateId(null, domainObject).ToString();
+            domainObject.Id = Guid.NewGuid().ToString();
             this.datastore.Save(domainObject);
         }
 
-        public IQueryable<T> Query<T>(IDatastoreQuery query) where  T :class
+        public IQueryable<T> Query<T>(IDatastoreQuery query) where T : class
         {
             return query.RunQuery<T>(this.datastore);
         }

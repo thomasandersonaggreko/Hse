@@ -1,9 +1,9 @@
 ﻿namespace HSEModel
 {
     /// <summary>
-    /// The high potential incident.
+    /// The risk of environmental incident.
     /// </summary>
-    public class HighPotentialIncident : Report
+    public class RiskOfEnvironmentalIncident : Risk
     {
         /// <summary>
         /// Gets or sets a value indicating whether [aggreko equipment].
@@ -12,13 +12,5 @@
         ///   <c>true</c> if [aggreko equipment]; otherwise, <c>false</c>.
         /// </value>
         public bool AggrekoEquipment { get; set; }
-
-        /// <summary>
-        /// Gets the type of the incident.
-        /// </summary>
-        /// <value>
-        /// The type of the incident.
-        /// </value>
-        public override IncidentType IncidentType => IncidentType.RoadTrafficAccident;
     }
 }

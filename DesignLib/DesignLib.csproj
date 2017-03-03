@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7BC6B637-BFC3-4AA2-90AD-9A387E92C818}</ProjectGuid>
+    <ProjectGuid>{95827B73-FFDE-47FA-8F8B-CFC68B60C1CB}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Business</RootNamespace>
-    <AssemblyName>Business</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <RootNamespace>DesignLib</RootNamespace>
+    <AssemblyName>DesignLib</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -30,17 +30,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LightInject, Version=5.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LightInject.5.0.1\lib\net46\LightInject.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Threading.Tasks.Dataflow, Version=4.5.24.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.Tpl.Dataflow.4.5.24\lib\portable-net45+win8+wpa81\System.Threading.Tasks.Dataflow.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -49,34 +40,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Commands\GenericCommand.cs" />
-    <Compile Include="Commands\Command.cs" />
-    <Compile Include="Commands\CommandResult.cs" />
-    <Compile Include="Commands\CommandResultReason.cs" />
-    <Compile Include="Eventbus\InMemoryEventBus.cs" />
-    <Compile Include="EventHandlers\NewReportSubmittedEventHandler.cs" />
-    <Compile Include="Events\NewReportSubmittedEvent.cs" />
-    <Compile Include="Commands\SubmitNewReportCommand.cs" />
+    <Compile Include="GeneratedCode\SampleClass.cs">
+      <SourceModelReference>modelbus://ModelStoreAdapter.1.0/Design/SampleClass/C:\Users\thomaande\Source\Repos\Hse\Design\Design.modelproj%252f9c39243d-55ed-4f91-89bc-b857aaa39809</SourceModelReference>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Queries\Query.cs" />
-    <Compile Include="Queries\GenericQuery.cs" />
-    <Compile Include="Queries\QueryResult.cs" />
-    <Compile Include="Queries\QueryResultReason.cs" />
-    <Compile Include="Queries\ReportListViewQuery.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Contracts\Contracts.csproj">
-      <Project>{B49FCA1E-3350-4595-98B6-228AF7466C54}</Project>
-      <Name>Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\HSEModel\HSEModel.csproj">
-      <Project>{95e1a966-d454-4ac7-8413-0be91072748d}</Project>
-      <Name>HSEModel</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
