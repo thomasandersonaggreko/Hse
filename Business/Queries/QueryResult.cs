@@ -3,57 +3,20 @@ namespace Business.Queries
     using System.Collections.Generic;
     using System.Linq;
 
+    /// <summary>
+    /// The query result.
+    /// </summary>
+    /// <typeparam name="T">The type of object within the result
+    /// </typeparam>
     public class QueryResult<T>
     {
-        #region Properties
-
-        public QueryResultReason QueryResultReason { get; private set; }
-
-        /// <summary>
-        /// Gets a value indicating whether this instance is populated.
-        /// </summary>
-        /// <value>
-        /// 	<c>true</c> if this instance is populated; otherwise, <c>false</c>.
-        /// </value>
-        public bool IsPopulated { get; private set; }
-
-        /// <summary>
-        /// Returns true if paging controls are rendered around this list
-        /// </summary>
-        public bool HasPagingControls { get; private set; }
-
-        /// <summary>
-        /// Gets a value indicating whether this instance is truncated.
-        /// </summary>
-        /// <value>
-        /// 	<c>true</c> if this instance is truncated; otherwise, <c>false</c>.
-        /// </value>
-        public bool IsTruncated { get; private set; }
-
-        /// <summary>
-        /// Indicates the total number of records in a paged list
-        /// </summary>
-        public int TotalNumberOfRecords { get; private set; }
-
-        /// <summary>
-        /// Indicates the total number of pages in a paged list
-        /// </summary>
-        public int TotalNumberOfPages { get; private set; }
-
-        public IList<T> List { get; set; }
-
-        #endregion
-
-
-        #region Constructors
-
         /// <summary>
         /// Initializes a new instance of the <see cref="QueryResult{T}"/> class.
         /// </summary>
-        public QueryResult()
+        /// <param name="queryResultReason">The query result reason.</param>
+        public QueryResult(QueryResultReason queryResultReason)
         {
-            this.IsPopulated = false;
-            this.IsTruncated = false;
+            this.QueryResultReason = queryResultReason;
         }
 
         /// <summary>
@@ -64,71 +27,49 @@ namespace Business.Queries
         public QueryResult(IEnumerable<T> list)
         {
             this.List = list.ToList();
-            this.IsPopulated = true;
-            this.IsTruncated = false;
         }
 
         /// <summary>
         /// Initializes a new instance of the <see cref="QueryResult{T}"/> class.
         /// </summary>
         /// <param name="list">The list.</param>
-        /// <param name="truncated">if set to <c>true</c> [truncated].</param>
-        public QueryResult(IEnumerable<T> list, bool truncated)
-        {
-            this.List = list.ToList();
-            this.IsPopulated = true;
-            this.IsTruncated = truncated;
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="QueryResult{T}"/> class.
-        /// </summary>
-        /// <param name="list">The list.</param>
-        /// <param name="truncated">if set to <c>true</c> [truncated].</param>
         /// <param name="totalNumberOfRecords">the total number of records</param>
-        /// <param name="totalNumberOfPages">the total number of pages</param>
-        public QueryResult(IEnumerable<T> list, bool truncated, int totalNumberOfRecords, int totalNumberOfPages)
-
+        public QueryResult(IEnumerable<T> list, int totalNumberOfRecords)
         {
             this.List = list.ToList();
-            this.IsPopulated = true;
-            this.IsTruncated = truncated;
             this.TotalNumberOfRecords = totalNumberOfRecords;
-            this.TotalNumberOfPages = totalNumberOfPages;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="QueryResult{T}"/> class.
+        /// Gets or sets the list.
         /// </summary>
-        /// <param name="valueObject">The value object.</param>
-        public QueryResult(T valueObject)
-        {
-            this.List = new List<T>() { valueObject };
-            this.IsPopulated = true;
-            this.IsTruncated = false;
-        }
+        /// <value>
+        /// The list.
+        /// </value>
+        public IList<T> List { get; set; }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="QueryResult{T}"/> class.
+        /// Gets the query result reason.
         /// </summary>
-        /// <param name="list">The list</param>
-        /// <param name="truncated">if set to <c>true</c> [truncated].</param>
-        /// <param name="populated">if set to <c>true</c> [populated].</param>
-        public QueryResult(IEnumerable<T> list, bool truncated, bool populated)
+        /// <value>
+        /// The query result reason.
+        /// </value>
+        public QueryResultReason QueryResultReason { get; private set; }
 
-        {
-            this.List = list.ToList();
-            this.IsPopulated = populated;
-            this.IsTruncated = truncated;
-        }
+        /// <summary>
+        /// Gets the total number of pages.
+        /// </summary>
+        /// <value>
+        /// The total number of pages.
+        /// </value>
+        public int TotalNumberOfPages { get; private set; }
 
-        #endregion
-
-        public QueryResult<T> MarkHasPagingControls()
-        {
-            this.HasPagingControls = true;
-            return this;
-        }
-
+        /// <summary>
+        /// Gets the total number of records.
+        /// </summary>
+        /// <value>
+        /// The total number of records.
+        /// </value>
+        public int TotalNumberOfRecords { get; private set; }
     }
 }

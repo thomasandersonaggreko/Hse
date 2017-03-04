@@ -6,8 +6,14 @@ namespace Data
 
     using MongoDB.Bson.Serialization;
 
+    /// <summary>
+    /// The no sql startup.
+    /// </summary>
     public class NoSqlStartup : IStartup
     {
+        /// <summary>
+        /// Starts this instance.
+        /// </summary>
         public void Start()
         {
             BsonClassMap.RegisterClassMap<ReportListItemProjection>(

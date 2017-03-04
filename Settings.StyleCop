@@ -1,7 +1,13 @@
 <StyleCopSettings Version="105">
   <GlobalSettings>
     <CollectionProperty Name="RecognizedWords">
+      <Value>authorised</Value>
+      <Value>Datamapper</Value>
+      <Value>Datastore</Value>
       <Value>desc</Value>
+      <Value>Notifier</Value>
+      <Value>Queryable</Value>
+      <Value>sql</Value>
     </CollectionProperty>
   </GlobalSettings>
   <Analyzers>

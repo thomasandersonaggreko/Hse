@@ -1,23 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Business.EventHandlers
+﻿namespace Business.EventHandlers
 {
+    using System;
+
     using Business.Commands;
 
     using Contracts;
 
     using HSEModel;
 
+    /// <summary>
+    /// The new report submitted event handler.
+    /// </summary>
     public class NewReportSubmittedEventHandler : IEventHandler<SubmitNewReportCommand<HighPotentialIncident>>
     {
+        /// <summary>
+        /// Handles the specified event.
+        /// </summary>
+        /// <param name="event">The event.</param>
         public void Handle(SubmitNewReportCommand<HighPotentialIncident> @event)
         {
-            //TODO: this is were reports would be updated in real time, where appropriate
-            throw new NotImplementedException();
+            // TODO: this is were reports would be updated in real time, where appropriate
         }
     }
 }

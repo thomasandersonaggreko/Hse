@@ -3,16 +3,17 @@ namespace Contracts
     using System.Linq;
 
     /// <summary>
-    /// The Datastore interface.
+    /// The Datamapper interface.
     /// </summary>
-    public interface IDatastore
+    public interface IDatamapper
     {
         /// <summary>
-        /// Queries this instance.
+        /// Queries the specified query.
         /// </summary>
         /// <typeparam name="T">The domain object</typeparam>
-        /// <returns>Query result</returns>
-        IQueryable<T> Query<T>() where T : class;
+        /// <param name="query">The query.</param>
+        /// <returns>Queryable list of domain objects</returns>
+        IQueryable<T> Query<T>(IDatastoreQuery query) where T : class;
 
         /// <summary>
         /// Saves the specified domain object.

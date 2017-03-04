@@ -11,6 +11,7 @@
     <AssemblyName>Contracts</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <StyleCopTreatErrorsAsWarnings>false</StyleCopTreatErrorsAsWarnings>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -40,6 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IDatamapper.cs" />
+    <Compile Include="IDatastoreQuery.cs" />
     <Compile Include="INotifier.cs" />
     <Compile Include="IBusinessEvent.cs" />
     <Compile Include="IDatastore.cs" />
@@ -47,9 +50,11 @@
     <Compile Include="IDomainObject.cs" />
     <Compile Include="IEventBus.cs" />
     <Compile Include="IReferenceNumberGenerator.cs" />
+    <Compile Include="IStartup.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\External\StyleCop 4.7\StyleCop.Targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
