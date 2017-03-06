@@ -41,6 +41,10 @@
     </Validate>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Business\Business.csproj">
+      <Name>Business</Name>
+      <Project>{7bc6b637-bfc3-4aa2-90ad-9a387e92c818}</Project>
+    </ProjectReference>
     <ProjectReference Include="..\Data.Sql\Data.Sql.csproj">
       <Name>Data.Sql</Name>
       <Project>{686d9394-6cc5-4981-8943-dcd420f4c236}</Project>
@@ -48,6 +52,10 @@
     <ProjectReference Include="..\Data\Data.csproj">
       <Name>Data</Name>
       <Project>{2d14dd46-1a68-4191-a352-ca57ea4ac1da}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\Web\Web.csproj">
+      <Name>Web</Name>
+      <Project>{ade7fe38-879a-4e2d-a6cb-21c4ef15a953}</Project>
     </ProjectReference>
   </ItemGroup>
 </Project>

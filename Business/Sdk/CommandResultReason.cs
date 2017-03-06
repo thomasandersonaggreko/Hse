@@ -1,4 +1,4 @@
-﻿namespace HSEModel.Commands
+﻿namespace Business.Sdk
 {
     /// <summary>
     /// The command result reason.

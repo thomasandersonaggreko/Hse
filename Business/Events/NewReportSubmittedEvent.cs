@@ -1,4 +1,6 @@
-﻿namespace Business.Commands
+﻿using System.Linq;
+
+namespace Business.Commands
 {
     using Contracts;
 

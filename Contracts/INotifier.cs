@@ -10,7 +10,7 @@
         /// </summary>
         /// <typeparam name="T">The domain object</typeparam>
         /// <param name="businessEvent">The business event.</param>
-        void Notify<T>(BusinessEvent<T> businessEvent) where T : DomainObject;
+        void Notify<T>(IBusinessEvent<T> businessEvent) where T : DomainObject;
     }
 
     /// <summary>
@@ -23,7 +23,7 @@
         /// </summary>
         /// <typeparam name="T">The domain object</typeparam>
         /// <param name="businessEvent">The business event.</param>
-        public void Notify<T>(BusinessEvent<T> businessEvent) where T : DomainObject
+        public void Notify<T>(IBusinessEvent<T> businessEvent) where T : DomainObject
         {
         }
     }

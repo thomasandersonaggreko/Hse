@@ -1,4 +1,4 @@
-﻿namespace Business.Queries
+﻿namespace Business.Sdk
 {
     /// <summary>
     /// The query result reason.

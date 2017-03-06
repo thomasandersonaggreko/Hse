@@ -1,11 +1,9 @@
-﻿namespace Business.Commands
+﻿namespace Business.Sdk
 {
     using System;
     using System.Collections.Generic;
     using System.Collections.ObjectModel;
     using System.ComponentModel.DataAnnotations;
-
-    using HSEModel.Commands;
 
     /// <summary>
     /// The command result.

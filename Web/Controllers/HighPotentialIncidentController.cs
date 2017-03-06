@@ -6,33 +6,40 @@ using System.Web.Mvc;
 
 namespace Web.Controllers
 {
+    using System.Threading.Tasks;
+
     using Business.Commands;
+    using Business.Sdk;
+
+    using Contracts;
 
     using FizzWare.NBuilder;
 
     using HSEModel;
 
+    using MessageBus;
+
     public partial class HighPotentialIncidentController : Controller
     {
-        private ICommandFactory commandFactory;
-
-        public HighPotentialIncidentController(ICommandFactory commandFactory)
+        private IBus bus;
+        public HighPotentialIncidentController(IBus bus)
         {
-            this.commandFactory = commandFactory;
+            this.bus = bus;
         }
-
 
         // GET: HighPotentialIncident
-        public virtual ActionResult CreateRandom()
+        public virtual async Task<ActionResult> CreateRandom()
         {
-            SubmitNewReportCommand<HighPotentialIncident> command =
-                this.commandFactory.GetCommand<SubmitNewReportCommand<HighPotentialIncident>>();
-            HighPotentialIncident domainObject = this.CreateValidHighPotentialIncident();
-            command.DomainObject = domainObject;
+            //this.ExecuteCommand(command).OnSuccess(GoToUrl).OnError(GoToView)
+            SubmitNewReportCommand<HighPotentialIncident> command = new SubmitNewReportCommand<HighPotentialIncident>();
+            command.DomainObject = this.CreateValidHighPotentialIncident();
+            command.ExecutingUser = this.User;
 
-            CommandResult commandResult = command.Execute(this.User);
+            CommandResult commandResult = await 
+                this.bus.RequestAsync<SubmitNewReportCommand<HighPotentialIncident>, CommandResult>(command).ConfigureAwait(false);
             return View();
         }
+        
 
         private HighPotentialIncident CreateValidHighPotentialIncident()
         {

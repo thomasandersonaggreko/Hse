@@ -266,13 +266,13 @@
       <Project>{b49fca1e-3350-4595-98b6-228af7466c54}</Project>
       <Name>Contracts</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Data\Data.csproj">
-      <Project>{2D14DD46-1A68-4191-A352-CA57EA4AC1DA}</Project>
-      <Name>Data</Name>
-    </ProjectReference>
     <ProjectReference Include="..\HSEModel\HSEModel.csproj">
       <Project>{95E1A966-D454-4AC7-8413-0BE91072748D}</Project>
       <Name>HSEModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MessageBus\MessageBus.csproj">
+      <Project>{92E9BDC4-291A-4745-B91D-A04CAC7424B3}</Project>
+      <Name>MessageBus</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

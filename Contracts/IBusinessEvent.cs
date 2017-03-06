@@ -1,11 +1,10 @@
 ﻿namespace Contracts
 {
     /// <summary>
-    /// The business event.
+    /// The IBusinessEvent interface
     /// </summary>
-    /// <typeparam name="TObject">The Domain Object
-    /// </typeparam>
-    public class BusinessEvent<TObject>
+    /// <typeparam name="TObject">The type of the object.</typeparam>
+    public interface IBusinessEvent<TObject>
         where TObject : DomainObject
     {
         /// <summary>
@@ -14,6 +13,6 @@
         /// <value>
         /// The domain object.
         /// </value>
-        public TObject DomainObject { get; set; }
+        TObject DomainObject { get; set; }
     }
 }

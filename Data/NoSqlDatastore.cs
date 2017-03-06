@@ -22,13 +22,16 @@ namespace Data
         private IMongoDatabase database = new MongoClient().GetDatabase("HSE");
 
         /// <summary>
-        /// Saves the specified domain object.
+        /// Saves the asynchronous.
         /// </summary>
-        /// <typeparam name="T">The domain object</typeparam>
+        /// <typeparam name="T">The domain object type</typeparam>
         /// <param name="domainObject">The domain object.</param>
-        public void Save<T>(T domainObject) where T : DomainObject
+        /// <returns>
+        /// Returns the task
+        /// </returns>
+        public Task SaveAsync<T>(T domainObject) where T : DomainObject
         {
-            this.database.GetCollection<T>("Report").InsertOne(domainObject);
+            return this.database.GetCollection<T>("Report").InsertOneAsync(domainObject);
         }
 
         /// <summary>

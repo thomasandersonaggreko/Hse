@@ -1,18 +1,25 @@
-﻿namespace Business.Queries
+﻿namespace Business.Sdk
 {
     using System.Collections.Generic;
     using System.Linq;
     using System.Security.Principal;
+    using System.Threading.Tasks;
+
+    using Business.Queries;
 
     using Contracts;
 
+    using MessageBus;
+
     /// <summary>
-    /// The generic query.
+    /// The query handler.
     /// </summary>
-    /// <typeparam name="TObject"> The domain object
+    /// <typeparam name="TRquest">The request type
     /// </typeparam>
-    public abstract class GenericQuery<TObject> : Query, IDatastoreQuery
-        where TObject : class
+    /// <typeparam name="TProjection">The projection result
+    /// </typeparam>
+    public abstract class QueryHandler<TRquest, TProjection> : IRequestHandler<TRquest, QueryResult<TProjection>>, IDatastoreQuery
+        where TRquest : IRequest<QueryResult<TProjection>> where TProjection : class
     {
         /// <summary>
         /// The datamapper
@@ -20,10 +27,10 @@
         private IDatamapper datamapper;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="GenericQuery{TObject}"/> class.
+        /// Initializes a new instance of the <see cref="QueryHandler{TRquest, TProjection}"/> class.
         /// </summary>
         /// <param name="datamapper">The datamapper.</param>
-        protected GenericQuery(IDatamapper datamapper)
+        protected QueryHandler(IDatamapper datamapper)
         {
             this.datamapper = datamapper;
         }
@@ -31,28 +38,28 @@
         /// <summary>
         /// Gets the required roles.
         /// </summary>
-        /// <value>
-        /// The required roles.
-        /// </value>
+        /// <value>The required roles.</value>
         public virtual IList<string> RequiredRoles => new List<string>();
 
         /// <summary>
-        /// Executes the specified user.
+        /// Handles a request
         /// </summary>
-        /// <param name="user">The user.</param>
-        /// <returns>The query result</returns>
-        public QueryResult<TObject> Execute(IPrincipal user)
+        /// <param name="message">The request message</param>
+        /// <returns>
+        /// Response from the request
+        /// </returns>
+        public async Task<QueryResult<TProjection>> HandleAsync(TRquest message)
         {
-            bool isAuthorised = this.IsAuthorised(user);
+            bool isAuthorised = this.IsAuthorised(message.ExecutingUser);
 
             if (!isAuthorised)
             {
-                return new QueryResult<TObject>(QueryResultReason.NotAuthorised);
+                return new QueryResult<TProjection>(QueryResultReason.NotAuthorised);
             }
 
-            IQueryable<TObject> result = this.datamapper.Query<TObject>(this);
+            IQueryable<TProjection> result = this.datamapper.Query<TProjection>(this);
 
-            return new QueryResult<TObject>(result.ToList());
+            return new QueryResult<TProjection>(result.ToList());
         }
 
         /// <summary>

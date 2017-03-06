@@ -105,11 +105,11 @@ namespace Web.Controllers
         partial void CreateRandomOverride(T4MVC_System_Web_Mvc_ActionResult callInfo);
 
         [NonAction]
-        public override System.Web.Mvc.ActionResult CreateRandom()
+        public override System.Threading.Tasks.Task<System.Web.Mvc.ActionResult> CreateRandom()
         {
             var callInfo = new T4MVC_System_Web_Mvc_ActionResult(Area, Name, ActionNames.CreateRandom);
             CreateRandomOverride(callInfo);
-            return callInfo;
+            return System.Threading.Tasks.Task.FromResult(callInfo as System.Web.Mvc.ActionResult);
         }
 
     }

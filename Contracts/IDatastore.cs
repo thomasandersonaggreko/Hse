@@ -1,6 +1,7 @@
 namespace Contracts
 {
     using System.Linq;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// The Datastore interface.
@@ -15,10 +16,11 @@ namespace Contracts
         IQueryable<T> Query<T>() where T : class;
 
         /// <summary>
-        /// Saves the specified domain object.
+        /// Saves the asynchronous.
         /// </summary>
-        /// <typeparam name="T">The domain object</typeparam>
+        /// <typeparam name="T">The domain object type</typeparam>
         /// <param name="domainObject">The domain object.</param>
-        void Save<T>(T domainObject) where T : DomainObject;
+        /// <returns>Returns the task</returns>
+        Task SaveAsync<T>(T domainObject) where T : DomainObject;
     }
 }

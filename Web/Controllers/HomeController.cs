@@ -6,30 +6,40 @@ using System.Web.Mvc;
 
 namespace Web.Controllers
 {
+    using System.Threading.Tasks;
+
     using Business.Commands;
     using Business.Queries;
+    using Business.Sdk;
 
+    using HSEModel;
     using HSEModel.Projections;
+
+    using MessageBus;
 
     public partial class HomeController : Controller
     {
-        private IQueryFactory queryFactory;
+        private IBus bus;
 
-        public HomeController(IQueryFactory queryFactory)
+        public HomeController(IBus bus)
         {
-            this.queryFactory = queryFactory;
+            this.bus = bus;
         }
-        public virtual ActionResult Index()
+        public virtual async Task<ActionResult> Index()
         {
-            ReportListViewQuery query = this.queryFactory.GetQuery<ReportListViewQuery>();
-            QueryResult<ReportListItemProjection> queryResult = query.Execute(this.User);
+            ReportListViewQuery query = new ReportListViewQuery();
+            query.ExecutingUser = this.User;
+            QueryResult<ReportListItemProjection> queryResult = 
+                await this.bus.RequestAsync<ReportListViewQuery, QueryResult<ReportListItemProjection>>(query).ConfigureAwait(false);
             return View(MVC.Home.Views.ViewNames.Reports, queryResult.List);
         }
 
-        public virtual ActionResult Reports()
+        public virtual async Task<ActionResult> Reports()
         {
-            ReportListViewQuery query = this.queryFactory.GetQuery<ReportListViewQuery>();
-            QueryResult<ReportListItemProjection> queryResult = query.Execute(this.User);
+            ReportListViewQuery query = new ReportListViewQuery();
+            query.ExecutingUser = this.User;
+            QueryResult<ReportListItemProjection> queryResult =
+                await this.bus.RequestAsync<ReportListViewQuery, QueryResult<ReportListItemProjection>>(query).ConfigureAwait(false);
             return View(queryResult.List);
         }
 

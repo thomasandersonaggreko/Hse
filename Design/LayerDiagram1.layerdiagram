@@ -1,18 +1,40 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <layerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/SimpleShapesModel" dslVersion="1.0.0.0" Id="bdde90e3-673e-4fd2-b6cb-3c49308d8a54" xmlns="http://schemas.microsoft.com/VisualStudio/TeamArchitect/LayerDesigner">
   <layers>
-    <layer Id="ed238571-97d8-4580-8bdd-cb110cfcaf43" name="Layer1">
+    <layer Id="88fa34d1-962d-458f-9625-726d28916834" name="Model" />
+    <layer Id="37688cde-56d8-478e-b61f-29e6f4309283" name="Business">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="111f288c-f754-4dcd-9a74-d996a38473dc" direction="Forward">
+          <layerMoniker Id="875b92a7-7b2d-47b2-91b4-c8249fc59578" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="d3bdef6c-4898-4b7a-8b5e-6136bd25a842" direction="Forward">
+          <layerMoniker Id="5a5076a6-5bfa-4209-96dc-ffb614aa0c9e" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="618dbadb-6d33-4c4d-a3eb-9873aa00614a" direction="Forward">
+          <layerMoniker Id="88fa34d1-962d-458f-9625-726d28916834" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
       <references>
-        <reference Id="474984d2-f934-4884-9d98-b7b711fb9306" name="Data.Sql">
-          <ArtifactNode Label="Data.Sql" Category="CodeSchema_Project" Id="(Assembly=../Data.Sql/Data.Sql.csproj)">
+        <reference Id="23201941-beed-4d6c-b9d3-b76482bb82a1" name="Business">
+          <ArtifactNode Label="Business" Category="CodeSchema_Project" Id="(Assembly=../Business/Business.csproj)">
             <Category Ref="File" />
           </ArtifactNode>
-          <ExpandedNode Id="(Assembly=Data.Sql)" Label="Data.Sql.dll" Category="CodeSchema_Assembly">
+          <ExpandedNode Id="(Assembly=Business)" Label="Business.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
             <LinkCategory Ref="Produces" />
             <LinkCategory Ref="Represents" />
           </ExpandedNode>
         </reference>
-        <reference Id="f05f5c93-3048-45fd-91c8-f3e9cacce64b" name="Data">
+      </references>
+    </layer>
+    <layer Id="875b92a7-7b2d-47b2-91b4-c8249fc59578" name="Data">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="714c0bdb-db7d-40ef-8079-c5ba2f3b8e90" direction="Forward">
+          <layerMoniker Id="88fa34d1-962d-458f-9625-726d28916834" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <references>
+        <reference Id="82c07d4e-d231-4c18-a8a0-4925e9a64ecd" name="Data">
           <ArtifactNode Label="Data" Category="CodeSchema_Project" Id="(Assembly=../Data/Data.csproj)">
             <Category Ref="File" />
           </ArtifactNode>
@@ -24,6 +46,32 @@
         </reference>
       </references>
     </layer>
-    <layer Id="0b2ceac0-a761-4f30-ba40-a5813b651a23" name="Layer2" />
+    <layer Id="30805e4e-b070-4850-890e-4cedc5ff2b81" name="Api" />
+    <layer Id="2119edf4-2319-406f-ac46-dc0715bb5c60" name="Web">
+      <dependencyToLayers>
+        <dependencyFromLayerToLayer Id="ba1aabb5-1835-49a1-b35e-4cb886ce339c" direction="Forward">
+          <layerMoniker Id="37688cde-56d8-478e-b61f-29e6f4309283" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="5b66ac3d-823d-45b7-b3a0-2830fea7dcb8" direction="Forward">
+          <layerMoniker Id="5a5076a6-5bfa-4209-96dc-ffb614aa0c9e" />
+        </dependencyFromLayerToLayer>
+        <dependencyFromLayerToLayer Id="bfc3b10f-44d3-447d-96d8-26ad22085591" direction="Forward">
+          <layerMoniker Id="88fa34d1-962d-458f-9625-726d28916834" />
+        </dependencyFromLayerToLayer>
+      </dependencyToLayers>
+      <references>
+        <reference Id="3f37c38d-052b-48ea-bb38-d0b2a905d2b2" name="Web">
+          <ArtifactNode Label="Web" Category="CodeSchema_Project" Id="(Assembly=../Web/Web.csproj)">
+            <Category Ref="File" />
+          </ArtifactNode>
+          <ExpandedNode Id="(Assembly=Web)" Label="Web.dll" Category="CodeSchema_Assembly">
+            <Category Ref="FileSystem.Category.FileOfType.dll" />
+            <LinkCategory Ref="Produces" />
+            <LinkCategory Ref="Represents" />
+          </ExpandedNode>
+        </reference>
+      </references>
+    </layer>
+    <layer Id="5a5076a6-5bfa-4209-96dc-ffb614aa0c9e" name="Message Bus" />
   </layers>
 </layerModel>

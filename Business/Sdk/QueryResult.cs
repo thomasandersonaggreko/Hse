@@ -1,7 +1,9 @@
-namespace Business.Queries
+namespace Business.Sdk
 {
     using System.Collections.Generic;
     using System.Linq;
+
+    using Business.Queries;
 
     /// <summary>
     /// The query result.

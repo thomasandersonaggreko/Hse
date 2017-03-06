@@ -1,17 +1,15 @@
-﻿using MessageBus;
+﻿using Contracts;
+using MessageBus;
 
 namespace Business.Commands
 {
-    using System.Security.Principal;
-
-    using Business.Sdk;
-
     /// <summary>
-    /// The submit new report command.
+    /// The business event.
     /// </summary>
-    /// <typeparam name="TObject">The domain object
+    /// <typeparam name="TObject">The Domain Object
     /// </typeparam>
-    public class SubmitNewReportCommand<TObject> : Command, INotification
+    public class BusinessEvent<TObject> : IBusinessEvent<TObject>, INotification
+        where TObject : DomainObject
     {
         /// <summary>
         /// Gets or sets the domain object.

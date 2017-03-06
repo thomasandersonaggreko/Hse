@@ -10,16 +10,17 @@ namespace Web
 {
     using System.Collections;
 
+    using Business;
     using Business.Commands;
     using Business.Queries;
 
     using Contracts;
 
-    using Data;
-
     using HSEModel;
 
     using LightInject;
+
+    using MessageBus;
 
     public class MvcApplication : System.Web.HttpApplication
     {
@@ -27,19 +28,20 @@ namespace Web
         {
             var container = new ServiceContainer();
             container.RegisterControllers();
-            container.RegisterFrom<NoSqlCompositionRoot>();
-           
+            container.RegisterFrom<BusinessCompositionRoot>();
+            container.Register<IBus, InMemoryBus>();
+            container.Register<IHandlerFactory, HandlerFactory>();
 
             container.RegisterInstance(typeof(IServiceContainer), container);
-            container.Register<INotifier, Notifier>();
+            //container.Register<INotifier, Notifier>();
             
-            container.Register<IDateTimeProvider, DateTimeProvider>();
-            container.Register<IReferenceNumberGenerator, ReferenceNumberGenerator>();
-            container.Register<SubmitNewReportCommand<HighPotentialIncident>>();
-            container.Register<ReportListViewQuery>();
+            //container.Register<IDateTimeProvider, DateTimeProvider>();
+            //container.Register<IReferenceNumberGenerator, ReferenceNumberGenerator>();
+            //container.Register<SubmitNewReportCommand<HighPotentialIncident>>();
+            //container.Register<ReportListViewQuery>();
 
-            container.Register<ICommandFactory, CommandFactory>(new PerContainerLifetime());
-            container.Register<IQueryFactory, QueryFactory>(new PerContainerLifetime());
+            //container.Register<ICommandFactory, CommandFactory>(new PerContainerLifetime());
+            //container.Register<IQueryFactory, QueryFactory>(new PerContainerLifetime());
 
             //register other services
 

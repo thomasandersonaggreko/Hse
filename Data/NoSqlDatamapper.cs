@@ -1,6 +1,7 @@
 namespace Data
 {
     using System.Linq;
+    using System.Threading.Tasks;
 
     using Contracts;
 
@@ -26,14 +27,17 @@ namespace Data
         }
 
         /// <summary>
-        /// Saves the specified domain object.
+        /// Saves the asynchronous.
         /// </summary>
-        /// <typeparam name="T">The domain object</typeparam>
+        /// <typeparam name="T">The domain object type</typeparam>
         /// <param name="domainObject">The domain object.</param>
-        public void Save<T>(T domainObject) where T : DomainObject
+        /// <returns>
+        /// Return the async task
+        /// </returns>
+        public Task SaveAsync<T>(T domainObject) where T : DomainObject
         {
             domainObject.Id = StringObjectIdGenerator.Instance.GenerateId(null, domainObject).ToString();
-            this.datastore.Save(domainObject);
+            return this.datastore.SaveAsync(domainObject);
         }
 
         /// <summary>
