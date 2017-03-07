@@ -4,6 +4,7 @@ namespace Business.Commands
 {
     using System.Threading.Tasks;
 
+    using Business.Events;
     using Business.Sdk;
 
     using Contracts;

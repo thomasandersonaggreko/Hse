@@ -2,6 +2,7 @@
 
 namespace Business.Commands
 {
+    using System.ComponentModel.DataAnnotations;
     using System.Security.Principal;
 
     using Business.Sdk;
@@ -19,6 +20,7 @@ namespace Business.Commands
         /// <value>
         /// The domain object.
         /// </value>
+        [Required, ValidateObject]
         public TObject DomainObject { get; set; }
     }
 }

@@ -1,5 +1,7 @@
 ﻿namespace HSEModel
 {
+    using System.ComponentModel.DataAnnotations;
+
     /// <summary>
     /// The high potential incident.
     /// </summary>
@@ -11,6 +13,7 @@
         /// <value>
         ///   <c>true</c> if [aggreko equipment]; otherwise, <c>false</c>.
         /// </value>
+        [Required]
         public bool AggrekoEquipment { get; set; }
 
         /// <summary>
@@ -19,6 +22,6 @@
         /// <value>
         /// The type of the incident.
         /// </value>
-        public override IncidentType IncidentType => IncidentType.RoadTrafficAccident;
+        public override IncidentType IncidentType => IncidentType.HighPotentialIncident;
     }
 }

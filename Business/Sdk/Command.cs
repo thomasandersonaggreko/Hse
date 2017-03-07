@@ -1,5 +1,6 @@
 namespace Business.Sdk
 {
+    using System.ComponentModel.DataAnnotations;
     using System.Security.Principal;
 
     using Business.Commands;
@@ -17,6 +18,7 @@ namespace Business.Sdk
         /// <value>
         /// The executing user.
         /// </value>
+        [Required]
         public IPrincipal ExecutingUser { get; set; }
     }
 }

@@ -68,11 +68,13 @@
     <Compile Include="Events\NewReportSubmittedEvent.cs" />
     <Compile Include="Commands\SubmitNewReportCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Sdk\CompositeValidationResult.cs" />
     <Compile Include="Sdk\QueryResult.cs" />
     <Compile Include="Sdk\QueryResultReason.cs" />
     <Compile Include="Queries\ReportListViewQuery.cs" />
     <Compile Include="Sdk\Query.cs" />
     <Compile Include="Sdk\QueryHandler.cs" />
+    <Compile Include="Sdk\ValidateObjectAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Contracts\Contracts.csproj">

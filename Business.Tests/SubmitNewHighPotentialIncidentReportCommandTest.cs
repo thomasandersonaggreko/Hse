@@ -35,13 +35,9 @@ namespace Business.Tests
         private string testReferenceNumber = "INC-2017-12345";
 
         [Test]
-        public async Task Submit_A_Valid_High_Potential_Incident_Report()
+        public async Task Submit_A_Valid_High_Potential_Incident_Report_With_All_Fields_Filled_In()
         {
             //ARRANAGE
-            SetupTestUser();
-            SetupDateTimeProvider();
-            SetupReferenceNumberGenerator();
-
             SubmitNewReportCommandHandler<HighPotentialIncident> handler = new SubmitNewReportCommandHandler<HighPotentialIncident>(datastore.Object, notifier.Object, dateTimeProvider.Object, this.referenceNumberGenerator.Object, bus.Object);
                 SubmitNewReportCommand<HighPotentialIncident> command = new SubmitNewReportCommand<HighPotentialIncident>();
             command.ExecutingUser = this.user.Object;
@@ -49,6 +45,27 @@ namespace Business.Tests
             command.DomainObject = domainObject;
 
             //            //ACT
+            CommandResult commandResult = await handler.HandleAsync(command).ConfigureAwait(false);
+
+            //            //ASSERT
+            commandResult.CommandResultReason.Should().Be(CommandResultReason.Successful);
+            domainObject.Created.Should().Be(currentDateTime);
+            domainObject.ReferenceNumber.Should().Be(this.testReferenceNumber);
+            datastore.Verify(x => x.SaveAsync(domainObject), Times.Once);
+            notifier.Verify(x => x.Notify(It.IsAny<NewReportSubmittedEvent<HighPotentialIncident>>()), Times.Once);
+        }
+
+        [Test]
+        public async Task Submit_A_Valid_High_Potential_Incident_Report_With_Only_Required_Fields_Filled_In()
+        {
+            //ARRANAGE
+            SubmitNewReportCommandHandler<HighPotentialIncident> handler = new SubmitNewReportCommandHandler<HighPotentialIncident>(datastore.Object, notifier.Object, dateTimeProvider.Object, this.referenceNumberGenerator.Object, bus.Object);
+            SubmitNewReportCommand<HighPotentialIncident> command = new SubmitNewReportCommand<HighPotentialIncident>();
+            command.ExecutingUser = this.user.Object;
+            HighPotentialIncident domainObject = this.CreateValidHighPotentialIncident();
+            command.DomainObject = domainObject;
+
+            //ACT
             CommandResult commandResult = await handler.HandleAsync(command);
 
             //            //ASSERT
@@ -57,6 +74,43 @@ namespace Business.Tests
             domainObject.ReferenceNumber.Should().Be(this.testReferenceNumber);
             datastore.Verify(x => x.SaveAsync(domainObject), Times.Once);
             notifier.Verify(x => x.Notify(It.IsAny<NewReportSubmittedEvent<HighPotentialIncident>>()), Times.Once);
+        }
+
+        [Test]
+        public async Task Submit_A_High_Potential_Incident_Report_With_ActionTakenLocal_Missing()
+        {
+            //ARRANAGE
+            SubmitNewReportCommandHandler<HighPotentialIncident> handler = new SubmitNewReportCommandHandler<HighPotentialIncident>(datastore.Object, notifier.Object, dateTimeProvider.Object, this.referenceNumberGenerator.Object, bus.Object);
+            SubmitNewReportCommand<HighPotentialIncident> command = new SubmitNewReportCommand<HighPotentialIncident>();
+            command.ExecutingUser = this.user.Object;
+            HighPotentialIncident domainObject = this.CreateValidHighPotentialIncident();
+            command.DomainObject = domainObject;
+            command.DomainObject.ActionTakenLocal = null;
+
+            //ACT
+            CommandResult commandResult = await handler.HandleAsync(command);
+
+            //            //ASSERT
+            commandResult.CommandResultReason.Should().Be(CommandResultReason.Successful);
+            domainObject.Created.Should().Be(currentDateTime);
+            domainObject.ReferenceNumber.Should().Be(this.testReferenceNumber);
+            datastore.Verify(x => x.SaveAsync(domainObject), Times.Once);
+            notifier.Verify(x => x.Notify(It.IsAny<NewReportSubmittedEvent<HighPotentialIncident>>()), Times.Once);
+        }
+
+        [SetUp]
+        public void SetupTest()
+        {
+            referenceNumberGenerator = new Mock<IReferenceNumberGenerator>();
+            user = new Mock<IPrincipal>();
+            identify = new Mock<IIdentity>();
+            datastore = new Mock<IDatamapper>();
+            bus = new Mock<IBus>();
+            notifier = new Mock<INotifier>();
+            dateTimeProvider = new Mock<IDateTimeProvider>();
+            SetupTestUser();
+            SetupDateTimeProvider();
+            SetupReferenceNumberGenerator();
         }
 
         private HighPotentialIncident CreateValidHighPotentialIncident()

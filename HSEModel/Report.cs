@@ -141,7 +141,7 @@
         /// Gets or sets the type of the other primary.
         /// </summary>
         /// <value>
-        /// The type of the other primary.
+        /// The type of the other primary.  Required If other selected on PrimaryDesc
         /// </value>
         [Required]
         public string OtherPrimaryType { get; set; }
@@ -168,9 +168,9 @@
         /// Gets or sets the project phase identifier.
         /// </summary>
         /// <value>
-        /// The project phase identifier.
+        /// The project phase identifier. Required if Project selection for LocationType
         /// </value>
-        public ReferenceDataItem ProjectPhaseId { get; set; }
+        public ReferenceDataItem ProjectPhase { get; set; }
 
         /// <summary>
         /// Gets or sets the report date.

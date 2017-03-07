@@ -1,7 +1,7 @@
-﻿using System.Linq;
-
-namespace Business.Commands
+﻿namespace Business.Events
 {
+    using Business.Commands;
+
     using Contracts;
 
     /// <summary>
@@ -12,12 +12,5 @@ namespace Business.Commands
     public class NewReportSubmittedEvent<TObject> : BusinessEvent<TObject>
         where TObject : DomainObject
     {
-        /// <summary>
-        /// Gets or sets the domain object.
-        /// </summary>
-        /// <value>
-        /// The domain object.
-        /// </value>
-        public TObject DomainObject { get; set; }
     }
 }
