@@ -15,22 +15,16 @@ namespace Web.Controllers
     using HSEModel;
     using HSEModel.Projections;
 
-    using MessageBus;
+    using Infrastructure;
 
     public partial class HomeController : Controller
     {
-        private IBus bus;
-
-        public HomeController(IBus bus)
-        {
-            this.bus = bus;
-        }
         public virtual async Task<ActionResult> Index()
         {
             ReportListViewQuery query = new ReportListViewQuery();
             query.ExecutingUser = this.User;
             QueryResult<ReportListItemProjection> queryResult = 
-                await this.bus.RequestAsync<ReportListViewQuery, QueryResult<ReportListItemProjection>>(query).ConfigureAwait(false);
+                await InfrastructureContext.Bus.RequestAsync<ReportListViewQuery, QueryResult<ReportListItemProjection>>(query).ConfigureAwait(false);
             return View(MVC.Home.Views.ViewNames.Reports, queryResult.List);
         }
 
@@ -39,7 +33,7 @@ namespace Web.Controllers
             ReportListViewQuery query = new ReportListViewQuery();
             query.ExecutingUser = this.User;
             QueryResult<ReportListItemProjection> queryResult =
-                await this.bus.RequestAsync<ReportListViewQuery, QueryResult<ReportListItemProjection>>(query).ConfigureAwait(false);
+                await InfrastructureContext.Bus.RequestAsync<ReportListViewQuery, QueryResult<ReportListItemProjection>>(query).ConfigureAwait(false);
             return View(queryResult.List);
         }
 

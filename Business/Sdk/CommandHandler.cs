@@ -9,7 +9,9 @@
 
     using Business.Commands;
 
-    using MessageBus;
+    using Infrastructure;
+    using Infrastructure.MessageBus;
+    using Infrastructure.Validation;
 
     /// <summary>
     /// The command handler.
@@ -39,9 +41,8 @@
                 // validate
                 if (message != null)
                 {
-                    var context = new ValidationContext(message, null, null);
-                    IList<ValidationResult> validationErrors = new List<ValidationResult>();
-                    if (!Validator.TryValidateObject(message, context, validationErrors, true))
+                    IList<ValidationResult> validationErrors = InfrastructureContext.Validator.Validate(message);
+                    if (validationErrors.Any())
                     {
                         return new CommandResult(validationErrors);
                     }

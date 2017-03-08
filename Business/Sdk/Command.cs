@@ -5,7 +5,7 @@ namespace Business.Sdk
 
     using Business.Commands;
 
-    using MessageBus;
+    using Infrastructure.MessageBus;
 
     /// <summary>
     /// The command request.

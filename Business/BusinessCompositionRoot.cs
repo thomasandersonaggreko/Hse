@@ -12,9 +12,10 @@ namespace Business
 
     using Data;
 
-    using LightInject;
+    using Infrastructure.DateTime;
+    using Infrastructure.MessageBus;
 
-    using MessageBus;
+    using LightInject;
 
     /// <summary>
     /// The business composition root.

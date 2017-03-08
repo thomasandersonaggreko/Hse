@@ -82,10 +82,6 @@
       <Project>{7BC6B637-BFC3-4AA2-90AD-9A387E92C818}</Project>
       <Name>Business</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Contracts\Contracts.csproj">
-      <Project>{B49FCA1E-3350-4595-98B6-228AF7466C54}</Project>
-      <Name>Contracts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\HSEModel\HSEModel.csproj">
       <Project>{95E1A966-D454-4AC7-8413-0BE91072748D}</Project>
       <Name>HSEModel</Name>

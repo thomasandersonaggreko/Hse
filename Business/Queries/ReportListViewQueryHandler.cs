@@ -6,6 +6,8 @@
 
     using Contracts;
 
+    using Data;
+
     using HSEModel.Projections;
 
     /// <summary>

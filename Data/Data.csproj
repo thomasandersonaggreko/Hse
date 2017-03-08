@@ -62,6 +62,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IDatamapper.cs" />
+    <Compile Include="IDatastore.cs" />
+    <Compile Include="IDatastoreQuery.cs" />
     <Compile Include="NoSqlCompositionRoot.cs" />
     <Compile Include="NoSqlDatamapper.cs" />
     <Compile Include="NoSqlDatastore.cs" />
@@ -73,13 +76,13 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Contracts\Contracts.csproj">
-      <Project>{B49FCA1E-3350-4595-98B6-228AF7466C54}</Project>
-      <Name>Contracts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\HSEModel\HSEModel.csproj">
       <Project>{95E1A966-D454-4AC7-8413-0BE91072748D}</Project>
       <Name>HSEModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
+      <Project>{5DC40D54-C824-44A0-9C4F-CF157C3BAEF4}</Project>
+      <Name>Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -98,10 +98,6 @@
       <Project>{7BC6B637-BFC3-4AA2-90AD-9A387E92C818}</Project>
       <Name>Business</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MessageBus\MessageBus.csproj">
-      <Project>{92E9BDC4-291A-4745-B91D-A04CAC7424B3}</Project>
-      <Name>MessageBus</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Web\Web.csproj">
       <Project>{ADE7FE38-879A-4E2D-A6CB-21C4EF15A953}</Project>
       <Name>Web</Name>

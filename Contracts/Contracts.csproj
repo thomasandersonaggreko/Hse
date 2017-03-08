@@ -46,7 +46,6 @@
     <Compile Include="IDatastoreQuery.cs" />
     <Compile Include="INotifier.cs" />
     <Compile Include="IDatastore.cs" />
-    <Compile Include="IDateTimeProvider.cs" />
     <Compile Include="IDomainObject.cs" />
     <Compile Include="IReferenceNumberGenerator.cs" />
     <Compile Include="IStartup.cs" />

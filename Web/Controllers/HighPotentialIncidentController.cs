@@ -17,15 +17,10 @@ namespace Web.Controllers
 
     using HSEModel;
 
-    using MessageBus;
+    using Infrastructure;
 
     public partial class HighPotentialIncidentController : Controller
     {
-        private IBus bus;
-        public HighPotentialIncidentController(IBus bus)
-        {
-            this.bus = bus;
-        }
 
         // GET: HighPotentialIncident
         public virtual async Task<ActionResult> CreateRandom()
@@ -36,7 +31,7 @@ namespace Web.Controllers
             command.ExecutingUser = this.User;
 
             CommandResult commandResult = await 
-                this.bus.RequestAsync<SubmitNewReportCommand<HighPotentialIncident>, CommandResult>(command).ConfigureAwait(false);
+               InfrastructureContext.Bus.RequestAsync<SubmitNewReportCommand<HighPotentialIncident>, CommandResult>(command).ConfigureAwait(false);
             return View();
         }
         

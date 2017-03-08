@@ -51,6 +51,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessCompositionRoot.cs" />
+    <Compile Include="BusinessContext.cs" />
+    <Compile Include="BusinessContextFactory.cs" />
     <Compile Include="Commands\SubmitNewReportCommandHandler.cs">
       <DependentUpon>SubmitNewReportCommand.cs</DependentUpon>
     </Compile>
@@ -58,6 +60,9 @@
     <Compile Include="Events\NewReportSubmittedEventHandler.cs">
       <DependentUpon>NewReportSubmittedEvent.cs</DependentUpon>
     </Compile>
+    <Compile Include="IBusinessEvent.cs" />
+    <Compile Include="INotifier.cs" />
+    <Compile Include="IReferenceNumberGenerator.cs" />
     <Compile Include="Queries\ReportListViewQueryHandler.cs">
       <DependentUpon>ReportListViewQuery.cs</DependentUpon>
     </Compile>
@@ -68,19 +73,13 @@
     <Compile Include="Events\NewReportSubmittedEvent.cs" />
     <Compile Include="Commands\SubmitNewReportCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Sdk\CompositeValidationResult.cs" />
     <Compile Include="Sdk\QueryResult.cs" />
     <Compile Include="Sdk\QueryResultReason.cs" />
     <Compile Include="Queries\ReportListViewQuery.cs" />
     <Compile Include="Sdk\Query.cs" />
     <Compile Include="Sdk\QueryHandler.cs" />
-    <Compile Include="Sdk\ValidateObjectAttribute.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Contracts\Contracts.csproj">
-      <Project>{B49FCA1E-3350-4595-98B6-228AF7466C54}</Project>
-      <Name>Contracts</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Data\Data.csproj">
       <Project>{2D14DD46-1A68-4191-A352-CA57EA4AC1DA}</Project>
       <Name>Data</Name>
@@ -89,9 +88,9 @@
       <Project>{95e1a966-d454-4ac7-8413-0be91072748d}</Project>
       <Name>HSEModel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MessageBus\MessageBus.csproj">
-      <Project>{92E9BDC4-291A-4745-B91D-A04CAC7424B3}</Project>
-      <Name>MessageBus</Name>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
+      <Project>{5DC40D54-C824-44A0-9C4F-CF157C3BAEF4}</Project>
+      <Name>Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />

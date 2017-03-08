@@ -1,8 +1,9 @@
-﻿using Contracts;
-using MessageBus;
-
-namespace Business.Commands
+﻿namespace Business.Events
 {
+    using Contracts;
+
+    using Infrastructure.MessageBus;
+
     /// <summary>
     /// The business event.
     /// </summary>

@@ -18,9 +18,9 @@ namespace Web
 
     using HSEModel;
 
-    using LightInject;
+    using Infrastructure.MessageBus;
 
-    using MessageBus;
+    using LightInject;
 
     public class MvcApplication : System.Web.HttpApplication
     {

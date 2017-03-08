@@ -1,13 +1,14 @@
-﻿using System.Threading.Tasks;
-using MessageBus;
-
-namespace Business.Events
+﻿namespace Business.Events
 {
+    using System.Threading.Tasks;
+
     using Business.Commands;
 
     using Contracts;
 
     using HSEModel;
+
+    using Infrastructure.MessageBus;
 
     /// <summary>
     /// The new report submitted event handler.

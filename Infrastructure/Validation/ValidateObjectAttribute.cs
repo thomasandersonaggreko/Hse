@@ -1,4 +1,4 @@
-﻿namespace Business.Sdk
+﻿namespace Infrastructure.Validation
 {
     using System;
     using System.Collections.Generic;

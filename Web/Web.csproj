@@ -262,17 +262,17 @@
       <Project>{7BC6B637-BFC3-4AA2-90AD-9A387E92C818}</Project>
       <Name>Business</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Contracts\Contracts.csproj">
-      <Project>{b49fca1e-3350-4595-98b6-228af7466c54}</Project>
-      <Name>Contracts</Name>
+    <ProjectReference Include="..\Data\Data.csproj">
+      <Project>{2d14dd46-1a68-4191-a352-ca57ea4ac1da}</Project>
+      <Name>Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\HSEModel\HSEModel.csproj">
       <Project>{95E1A966-D454-4AC7-8413-0BE91072748D}</Project>
       <Name>HSEModel</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MessageBus\MessageBus.csproj">
-      <Project>{92E9BDC4-291A-4745-B91D-A04CAC7424B3}</Project>
-      <Name>MessageBus</Name>
+    <ProjectReference Include="..\Infrastructure\Infrastructure.csproj">
+      <Project>{5dc40d54-c824-44a0-9c4f-cf157c3baef4}</Project>
+      <Name>Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

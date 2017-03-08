@@ -9,7 +9,9 @@
 
     using Contracts;
 
-    using MessageBus;
+    using Data;
+
+    using Infrastructure.MessageBus;
 
     /// <summary>
     /// The query handler.

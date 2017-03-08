@@ -1,11 +1,12 @@
-﻿using MessageBus;
-
-namespace Business.Commands
+﻿namespace Business.Commands
 {
     using System.ComponentModel.DataAnnotations;
     using System.Security.Principal;
 
     using Business.Sdk;
+
+    using Infrastructure.MessageBus;
+    using Infrastructure.Validation;
 
     /// <summary>
     /// The submit new report command.

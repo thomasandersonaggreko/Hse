@@ -18,7 +18,7 @@ namespace Web.Tests.Controllers
         public async Task Index()
         {
             // Arrange
-            HomeController controller = new HomeController(null);
+            HomeController controller = new HomeController();
 
             // Act
             ViewResult result = await controller.Index() as ViewResult;
@@ -31,7 +31,7 @@ namespace Web.Tests.Controllers
         public void About()
         {
             // Arrange
-            HomeController controller = new HomeController(null);
+            HomeController controller = new HomeController();
 
             // Act
             ViewResult result = controller.About() as ViewResult;
@@ -44,7 +44,7 @@ namespace Web.Tests.Controllers
         public void Contact()
         {
             // Arrange
-            HomeController controller = new HomeController(null);
+            HomeController controller = new HomeController();
 
             // Act
             ViewResult result = controller.Contact() as ViewResult;
