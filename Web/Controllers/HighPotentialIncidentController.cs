@@ -22,7 +22,7 @@ namespace Web.Controllers
     public partial class HighPotentialIncidentController : Controller
     {
 
-        // GET: HighPotentialIncident
+        // GET: api/HighPotentialIncident
         public virtual async Task<ActionResult> CreateRandom()
         {
             //this.ExecuteCommand(command).OnSuccess(GoToUrl).OnError(GoToView)

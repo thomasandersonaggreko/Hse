@@ -17,7 +17,6 @@ namespace Data
         {
             serviceRegistry.Register<IStartup, NoSqlStartup>();
             serviceRegistry.Register<IDatamapper, NoSqlDatamapper>();
-            serviceRegistry.Register<IDatastore, NoSqlDataStore>();
         }
     }
 }

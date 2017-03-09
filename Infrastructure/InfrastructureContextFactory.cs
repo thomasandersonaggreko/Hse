@@ -1,6 +1,7 @@
 ﻿namespace Infrastructure
 {
     using Infrastructure.DateTime;
+    using Infrastructure.Logging;
     using Infrastructure.MessageBus;
     using Infrastructure.Validation;
 
@@ -34,6 +35,14 @@
         /// The reference number generator.
         /// </value>
         IDateTimeProvider DateTimeProvider { get; }
+
+        /// <summary>
+        /// Gets the log manager.
+        /// </summary>
+        /// <value>
+        /// The log manager.
+        /// </value>
+        ILogManager LogManager { get; }
     }
 
     /// <summary>
@@ -79,5 +88,13 @@
         /// </value>
         public IDateTimeProvider DateTimeProvider
             => this.container.GetInstance<IDateTimeProvider>();
+
+        /// <summary>
+        /// Gets the log manager.
+        /// </summary>
+        /// <value>
+        /// The log manager.
+        /// </value>
+        public ILogManager LogManager => this.container.GetInstance<ILogManager>();
     }
 }

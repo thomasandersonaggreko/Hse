@@ -6,6 +6,9 @@ namespace Infrastructure.MessageBus
     using System.Threading;
     using System.Threading.Tasks;
 
+    using Infrastructure.Logging;
+    using Infrastructure.Validation;
+
     using LightInject;
 
     public interface IHandlerFactory
@@ -19,6 +22,10 @@ namespace Infrastructure.MessageBus
 
     public class HandlerFactory : IHandlerFactory
     {
+        /// <summary>
+        /// The logger
+        /// </summary>
+        private static readonly ILogger Logger = InfrastructureContext.LogManager.GetLogger<HandlerFactory>();
         private IServiceContainer container;
 
         public HandlerFactory(IServiceContainer container)
@@ -33,12 +40,14 @@ namespace Infrastructure.MessageBus
 
         public IRequestHandler<T, TR> GetInstance<T, TR>(Type type) where T : IRequest, IRequest<TR>
         {
-            return this.container.GetInstance<IRequestHandler<T, TR>>();
+            //TODO add some logging
+            return this.container.TryGetInstance<IRequestHandler<T, TR>>();
         }
 
         public IEnumerable<T> GetAllInstances<T>()
         {
-            throw new NotImplementedException();
+            //TODO add some logging
+            return this.container.GetAllInstances<T>();
         }
     }
 
@@ -47,7 +56,15 @@ namespace Infrastructure.MessageBus
     /// </summary>
     public class InMemoryBus : IBus
     {
+        /// <summary>
+        /// The handler factory
+        /// </summary>
         private readonly IHandlerFactory handlerFactory;
+
+        /// <summary>
+        /// The logger
+        /// </summary>
+        private static readonly ILogger Logger = InfrastructureContext.LogManager.GetLogger<InMemoryBus>();
 
         /// <summary>
         /// Initializes a new instance of the <see cref="InMemoryBus"/> class. 
@@ -57,6 +74,15 @@ namespace Infrastructure.MessageBus
             this.handlerFactory = handlerFactory;
         }
 
+        /// <summary>
+        /// Asynchronously send a request to a single handler
+        /// </summary>
+        /// <typeparam name="TRequest"></typeparam>
+        /// <typeparam name="TResponse">Response type</typeparam>
+        /// <param name="request">Request object</param>
+        /// <returns>
+        /// A task that represents the send operation. The task result contains the handler response
+        /// </returns>
         public Task<TResponse> RequestAsync<TRequest, TResponse>(TRequest request) where TRequest : IRequest, IRequest<TResponse>
         {
             IRequestHandler<TRequest, TResponse> handler = this.handlerFactory.GetInstance<TRequest, TResponse>(typeof(TRequest));

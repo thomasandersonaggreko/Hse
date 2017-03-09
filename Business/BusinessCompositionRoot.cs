@@ -30,12 +30,13 @@ namespace Business
         {
             serviceRegistry.Register<IStartup, NoSqlStartup>();
             serviceRegistry.Register<IDatamapper, NoSqlDatamapper>();
-            serviceRegistry.Register<IDatastore, NoSqlDataStore>();
 
             serviceRegistry.Register<IReferenceNumberGenerator, ReferenceNumberGenerator>();
             serviceRegistry.Register<INotifier, Notifier>();
 
             serviceRegistry.Register<IDateTimeProvider, DateTimeProvider>();
+
+            serviceRegistry.Register<IBusinessContextFactory, BusinessContextFactory>(new PerContainerLifetime());
 
             serviceRegistry.Register(typeof(IRequestHandler<,>), typeof(SubmitNewReportCommandHandler<>));
         }

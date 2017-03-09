@@ -11,8 +11,8 @@ namespace Data
         /// Runs the query.
         /// </summary>
         /// <typeparam name="T">The domain object</typeparam>
-        /// <param name="datastore">The datastore.</param>
+        /// <param name="datamapper">The datastore.</param>
         /// <returns>query result</returns>
-        IQueryable<T> RunQuery<T>(IDatastore datastore) where T : class;
+        IQueryable<T> RunQuery<T>(IDatamapper datamapper) where T : class;
     }
 }

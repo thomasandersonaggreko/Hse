@@ -9,6 +9,15 @@ using System.Web.Routing;
 
 namespace Api
 {
+    using Business;
+
+    using Contracts;
+
+    using Infrastructure;
+    using Infrastructure.MessageBus;
+
+    using LightInject;
+
     /// <summary>
     /// The web API application.
     /// </summary>
@@ -19,6 +28,16 @@ namespace Api
         /// </summary>
         protected void Application_Start()
         {
+            var container = new ServiceContainer();
+            container.RegisterApiControllers();
+
+            // register other services
+            container.EnablePerWebRequestScope();
+            container.EnableWebApi(GlobalConfiguration.Configuration);
+            container.SetupInfrastructureContext();
+            container.SetupBusinessContext();
+            container.RunStartup();
+
             AreaRegistration.RegisterAllAreas();
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

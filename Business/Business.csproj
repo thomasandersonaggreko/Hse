@@ -31,8 +31,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="LightInject, Version=5.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\LightInject.5.0.1\lib\net46\LightInject.dll</HintPath>
+    <Reference Include="LightInject, Version=5.0.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\LightInject.5.0.2\lib\net46\LightInject.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -53,10 +53,18 @@
     <Compile Include="BusinessCompositionRoot.cs" />
     <Compile Include="BusinessContext.cs" />
     <Compile Include="BusinessContextFactory.cs" />
+    <Compile Include="Commands\CloseHighPotentialIncidentCommand.cs" />
+    <Compile Include="Commands\CloseHighPotentialIncidentHandler.cs">
+      <DependentUpon>CloseHighPotentialIncidentCommand.cs</DependentUpon>
+    </Compile>
     <Compile Include="Commands\SubmitNewReportCommandHandler.cs">
       <DependentUpon>SubmitNewReportCommand.cs</DependentUpon>
     </Compile>
     <Compile Include="Events\BusinessEvent.cs" />
+    <Compile Include="Events\CloseHighPotentialIncidentEvent.cs" />
+    <Compile Include="Events\CloseHighPotentialIncidentEventHandler.cs">
+      <DependentUpon>CloseHighPotentialIncidentEvent.cs</DependentUpon>
+    </Compile>
     <Compile Include="Events\NewReportSubmittedEventHandler.cs">
       <DependentUpon>NewReportSubmittedEvent.cs</DependentUpon>
     </Compile>
@@ -78,6 +86,7 @@
     <Compile Include="Queries\ReportListViewQuery.cs" />
     <Compile Include="Sdk\Query.cs" />
     <Compile Include="Sdk\QueryHandler.cs" />
+    <Compile Include="ServiceContainerX.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Data\Data.csproj">

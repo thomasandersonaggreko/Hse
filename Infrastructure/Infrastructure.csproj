@@ -34,6 +34,14 @@
       <HintPath>..\packages\LightInject.5.0.2\lib\net46\LightInject.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.4.3\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -45,26 +53,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InfrastructureCompositionRoot.cs" />
     <Compile Include="InfrastructureContext.cs" />
     <Compile Include="DateTime\DateTimeProvider.cs" />
     <Compile Include="DateTime\IDateTimeProvider.cs" />
     <Compile Include="InfrastructureContextFactory.cs" />
     <Compile Include="IStartup.cs" />
+    <Compile Include="Logging\ILogger.cs" />
+    <Compile Include="Logging\ILogManager.cs" />
+    <Compile Include="Logging\Logger.cs" />
+    <Compile Include="Logging\LogManager.cs" />
     <Compile Include="MessageBus\IBus.cs" />
     <Compile Include="MessageBus\InMemoryBus.cs" />
     <Compile Include="MessageBus\INotification.cs" />
     <Compile Include="MessageBus\INotificationHandler.cs" />
     <Compile Include="MessageBus\IRequest.cs" />
     <Compile Include="MessageBus\IRequestHandler.cs" />
+    <Compile Include="ObjectX.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceContainerX.cs" />
     <Compile Include="Validation\CompositeValidationResult.cs" />
     <Compile Include="Validation\DataAnnotationValidator.cs" />
     <Compile Include="Validation\IValidator.cs" />
     <Compile Include="Validation\ValidateObjectAttribute.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Logging\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>

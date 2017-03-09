@@ -3,15 +3,13 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Data;
     using System.Linq;
     using System.Security.Principal;
     using System.Threading.Tasks;
 
-    using Business.Commands;
-
     using Infrastructure;
     using Infrastructure.MessageBus;
-    using Infrastructure.Validation;
 
     /// <summary>
     /// The command handler.
@@ -38,17 +36,17 @@
         {
             try
             {
-                // validate
-                if (message != null)
+                if (message == null)
                 {
-                    IList<ValidationResult> validationErrors = InfrastructureContext.Validator.Validate(message);
-                    if (validationErrors.Any())
-                    {
-                        return new CommandResult(validationErrors);
-                    }
+                    throw new NoNullAllowedException("command cannot be null");
                 }
-
-                // authorize
+               
+                IList<ValidationResult> validationErrors = InfrastructureContext.Validator.Validate(message);
+                if (validationErrors.Any())
+                {
+                    return new CommandResult(validationErrors);
+                }
+               
                 bool isAuthorised = this.IsAuthorised(message.ExecutingUser);
 
                 if (!isAuthorised)

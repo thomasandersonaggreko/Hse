@@ -6,6 +6,7 @@ namespace Data
     using Contracts;
 
     using MongoDB.Bson.Serialization.IdGenerators;
+    using MongoDB.Driver;
 
     /// <summary>
     /// The no sql datamapper.
@@ -13,18 +14,9 @@ namespace Data
     public class NoSqlDatamapper : IDatamapper
     {
         /// <summary>
-        /// The datastore
+        /// The database
         /// </summary>
-        private IDatastore datastore;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="NoSqlDatamapper"/> class.
-        /// </summary>
-        /// <param name="datastore">The datastore.</param>
-        public NoSqlDatamapper(IDatastore datastore)
-        {
-            this.datastore = datastore;
-        }
+        private readonly IMongoDatabase database = new MongoClient().GetDatabase("HSE");
 
         /// <summary>
         /// Saves the asynchronous.
@@ -37,7 +29,7 @@ namespace Data
         public Task SaveAsync<T>(T domainObject) where T : DomainObject
         {
             domainObject.Id = StringObjectIdGenerator.Instance.GenerateId(null, domainObject).ToString();
-            return this.datastore.SaveAsync(domainObject);
+            return this.database.GetCollection<T>("Report").InsertOneAsync(domainObject);
         }
 
         /// <summary>
@@ -50,7 +42,44 @@ namespace Data
         /// </returns>
         public IQueryable<T> Query<T>(IDatastoreQuery query) where T : class
         {
-            return query.RunQuery<T>(this.datastore);
+            return query.RunQuery<T>(this);
+        }
+
+        /// <summary>
+        /// Queries this instance.
+        /// </summary>
+        /// <typeparam name="T">The domain object type</typeparam>
+        /// <returns>the query</returns>
+        public IQueryable<T> Query<T>() where T : class
+        {
+            return this.database.GetCollection<T>("Report").AsQueryable();
+        }
+
+        /// <summary>
+        /// Updates the specified domain object.
+        /// </summary>
+        /// <typeparam name="T">The domain object type</typeparam>
+        /// <param name="domainObject">The domain object.</param>
+        /// <returns>
+        /// Return the async task
+        /// </returns>
+        public Task UpdateAsync<T>(T domainObject) where T : DomainObject
+        {
+            return this.database.GetCollection<T>("Report").ReplaceOneAsync(x => x.Id == domainObject.Id, domainObject);
+        }
+
+        /// <summary>
+        /// Loads the specified identifier.
+        /// </summary>
+        /// <typeparam name="T">the domain object</typeparam>
+        /// <param name="id">The identifier.</param>
+        /// <returns>
+        /// returns the domain object
+        /// </returns>
+        public async Task<T> Load<T>(string id) where T : DomainObject
+        {
+            IAsyncCursor<T> cursor = await this.database.GetCollection<T>("Report").FindAsync(x => x.Id == id).ConfigureAwait(false);
+            return cursor.FirstOrDefault();
         }
     }
 }

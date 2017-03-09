@@ -22,6 +22,7 @@ namespace Business.Tests
 
     using Infrastructure;
     using Infrastructure.DateTime;
+    using Infrastructure.Logging;
     using Infrastructure.MessageBus;
     using Infrastructure.Validation;
 
@@ -118,11 +119,11 @@ namespace Business.Tests
             dateTimeProvider = new Mock<IDateTimeProvider>();
 
             infrastructureContextFactory = new Mock<IInfrastructureContextFactory>();
+            InfrastructureContext.Setup(this.infrastructureContextFactory.Object);
             infrastructureContextFactory.Setup(x => x.Bus).Returns(bus.Object);
             infrastructureContextFactory.Setup(x => x.DateTimeProvider).Returns(dateTimeProvider.Object);
+            infrastructureContextFactory.Setup(x => x.LogManager).Returns(new LogManager());
             infrastructureContextFactory.Setup(x => x.Validator).Returns(new DataAnnotationValidator());
-
-            InfrastructureContext.Setup(this.infrastructureContextFactory.Object);
 
             businessContextFactory = new Mock<IBusinessContextFactory>();
             businessContextFactory.Setup(x => x.Notifier).Returns(notifier.Object);

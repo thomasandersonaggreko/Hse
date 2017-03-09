@@ -61,7 +61,7 @@
 
             IQueryable<TProjection> result = this.datamapper.Query<TProjection>(this);
 
-            return new QueryResult<TProjection>(result.ToList());
+            return new QueryResult<TProjection>(await result.ToListAsync().ConfigureAwait(false));
         }
 
         /// <summary>
@@ -80,8 +80,8 @@
         /// Runs the query.
         /// </summary>
         /// <typeparam name="TObject">The type of the object.</typeparam>
-        /// <param name="datastore">The datastore.</param>
+        /// <param name="datamapper">The datastore.</param>
         /// <returns>returns the queryable list of domain objects</returns>
-        public abstract IQueryable<TObject> RunQuery<TObject>(IDatastore datastore) where TObject : class;
+        public abstract IQueryable<TObject> RunQuery<TObject>(IDatamapper datamapper) where TObject : class;
     }
 }

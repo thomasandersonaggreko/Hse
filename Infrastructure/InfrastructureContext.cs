@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 namespace Infrastructure
 {
     using Infrastructure.DateTime;
+    using Infrastructure.Logging;
     using Infrastructure.MessageBus;
     using Infrastructure.Validation;
 
@@ -43,6 +44,14 @@ namespace Infrastructure
         /// The validator.
         /// </value>
         public static IValidator Validator => factory.Validator;
+
+        /// <summary>
+        /// Gets the log manager.
+        /// </summary>
+        /// <value>
+        /// The log manager.
+        /// </value>
+        public static ILogManager LogManager => factory.LogManager;
 
         /// <summary>
         /// Setups the specified business context factory.

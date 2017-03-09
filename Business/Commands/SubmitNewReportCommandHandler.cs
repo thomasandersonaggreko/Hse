@@ -15,7 +15,7 @@
     /// </summary>
     /// <typeparam name="TObject">The domain object
     /// </typeparam>
-    public class SubmitNewReportCommandHandler<TObject> : CommandHandler<SubmitNewReportCommand<TObject>>
+    internal class SubmitNewReportCommandHandler<TObject> : CommandHandler<SubmitNewReportCommand<TObject>>
         where TObject : DomainObject
     {
         /// <summary>
