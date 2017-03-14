@@ -3,11 +3,13 @@
     using Contracts;
 
     using Infrastructure.DateTime;
+    using Infrastructure.Interceptor;
     using Infrastructure.Logging;
     using Infrastructure.MessageBus;
     using Infrastructure.Validation;
 
     using LightInject;
+    using LightInject.Interception;
 
     /// <summary>
     /// The business composition root.
@@ -26,6 +28,9 @@
             serviceRegistry.Register<ILogManager, LogManager>(new PerContainerLifetime());
             serviceRegistry.Register<IDateTimeProvider, DateTimeProvider>(new PerContainerLifetime());
             serviceRegistry.Register<IInfrastructureContextFactory, InfrastructureContextFactory>(new PerContainerLifetime());
+
+            serviceRegistry.Register<IInterceptor, LoggingInterceptor>();
+            serviceRegistry.Decorate<IInterceptor, LoggingAsyncInterceptor>();
         }
     }
 }

@@ -1,5 +1,7 @@
 ﻿namespace Infrastructure.Logging
 {
+    using System;
+
     /// <summary>
     /// The log manager.
     /// </summary>
@@ -13,6 +15,17 @@
         public ILogger GetLogger<T>()
         {
             NLog.Logger logger = NLog.LogManager.GetLogger(typeof(T).Name);
+            return new Logger(logger);
+        }
+
+        /// <summary>
+        /// Gets the logger.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>The logger</returns>
+        public ILogger GetLogger(Type type)
+        {
+            NLog.Logger logger = NLog.LogManager.GetLogger(type.Name);
             return new Logger(logger);
         }
     }

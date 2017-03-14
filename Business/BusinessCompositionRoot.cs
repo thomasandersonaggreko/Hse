@@ -22,6 +22,7 @@ namespace Business
     using Infrastructure.MessageBus;
 
     using LightInject;
+    using LightInject.Interception;
 
     /// <summary>
     /// The business composition root.
@@ -47,6 +48,7 @@ namespace Business
             serviceRegistry.Register(typeof(IRequestHandler<,>), typeof(SubmitNewReportCommandHandler<>));
             serviceRegistry.Register(typeof(IRequestHandler<MonthlyHighPotentialIncidentReportQuery, QueryResult<MonthlyHighPotentialIncidents>>), typeof(MonthlyHighPotentialIncidentReportQueryHandler));
             serviceRegistry.Register<INotificationHandler<NewReportSubmittedEvent<HighPotentialIncident>>, NewReportSubmittedEventHandler>();
+            serviceRegistry.Intercept(sr => sr.ServiceType == typeof(IRequestHandler<MonthlyHighPotentialIncidentReportQuery, QueryResult<MonthlyHighPotentialIncidents>>), factory => factory.GetInstance<IInterceptor>());
         }
     }
 }
