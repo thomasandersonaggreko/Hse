@@ -20,28 +20,22 @@
     /// </typeparam>
     /// <typeparam name="TProjection">The projection result
     /// </typeparam>
-    public abstract class QueryHandler<TRquest, TProjection> : IRequestHandler<TRquest, QueryResult<TProjection>>, IDatastoreQuery
+    public abstract class QueryHandler<TRquest, TProjection> : IRequestHandler<TRquest, QueryResult<TProjection>>, IDatastoreQuery<TProjection, TRquest>
         where TRquest : IRequest<QueryResult<TProjection>> where TProjection : class
     {
-        /// <summary>
-        /// The datamapper
-        /// </summary>
-        private IDatamapper datamapper;
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="QueryHandler{TRquest, TProjection}"/> class.
-        /// </summary>
-        /// <param name="datamapper">The datamapper.</param>
-        protected QueryHandler(IDatamapper datamapper)
-        {
-            this.datamapper = datamapper;
-        }
-
         /// <summary>
         /// Gets the required roles.
         /// </summary>
         /// <value>The required roles.</value>
         public virtual IList<string> RequiredRoles => new List<string>();
+
+        /// <summary>
+        /// Gets or sets the query parameters.
+        /// </summary>
+        /// <value>
+        /// The query parameters.
+        /// </value>
+        protected TRquest QueryParams { get; set; }
 
         /// <summary>
         /// Handles a request
@@ -59,7 +53,7 @@
                 return new QueryResult<TProjection>(QueryResultReason.NotAuthorised);
             }
 
-            IQueryable<TProjection> result = this.datamapper.Query<TProjection>(this);
+            IQueryable<TProjection> result = BusinessContext.Datamapper.Query(this, message);
 
             return new QueryResult<TProjection>(await result.ToListAsync().ConfigureAwait(false));
         }
@@ -79,9 +73,11 @@
         /// <summary>
         /// Runs the query.
         /// </summary>
-        /// <typeparam name="TObject">The type of the object.</typeparam>
         /// <param name="datamapper">The datastore.</param>
-        /// <returns>returns the queryable list of domain objects</returns>
-        public abstract IQueryable<TObject> RunQuery<TObject>(IDatamapper datamapper) where TObject : class;
+        /// <param name="queryParms">The query.</param>
+        /// <returns>
+        /// returns the queryable list of domain objects
+        /// </returns>
+        public abstract IQueryable<TProjection> RunQuery(IDatamapper datamapper, TRquest queryParms);
     }
 }

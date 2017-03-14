@@ -7,10 +7,16 @@ using System.Threading.Tasks;
 namespace Business
 {
     using Business.Commands;
+    using Business.Events;
+    using Business.Queries;
+    using Business.Sdk;
 
     using Contracts;
 
     using Data;
+
+    using HSEModel;
+    using HSEModel.ReadModel;
 
     using Infrastructure.DateTime;
     using Infrastructure.MessageBus;
@@ -39,6 +45,8 @@ namespace Business
             serviceRegistry.Register<IBusinessContextFactory, BusinessContextFactory>(new PerContainerLifetime());
 
             serviceRegistry.Register(typeof(IRequestHandler<,>), typeof(SubmitNewReportCommandHandler<>));
+            serviceRegistry.Register(typeof(IRequestHandler<MonthlyHighPotentialIncidentReportQuery, QueryResult<MonthlyHighPotentialIncidents>>), typeof(MonthlyHighPotentialIncidentReportQueryHandler));
+            serviceRegistry.Register<INotificationHandler<NewReportSubmittedEvent<HighPotentialIncident>>, NewReportSubmittedEventHandler>();
         }
     }
 }

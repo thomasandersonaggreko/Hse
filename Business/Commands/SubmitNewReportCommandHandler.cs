@@ -30,7 +30,7 @@
             request.DomainObject.ReferenceNumber = BusinessContext.ReferenceNumberGenerator.Generate();
             this.SetAuditFields(request);
             await BusinessContext.Datamapper.SaveAsync(request.DomainObject).ConfigureAwait(false);
-            var businessEvent = new NewReportSubmittedEvent<TObject>() { DomainObject = request.DomainObject };
+            var businessEvent = new NewReportSubmittedEvent<TObject>() { DomainObject = request.DomainObject, ExecutingUser = request.ExecutingUser };
             BusinessContext.Notifier.Notify(businessEvent);
             await InfrastructureContext.Bus.PublishAsync(businessEvent).ConfigureAwait(false);
         }

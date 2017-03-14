@@ -55,6 +55,9 @@
     <Compile Include="Projections\ReportListItemProjection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PropertyDamage.cs" />
+    <Compile Include="ReadModel\MonthlyHighPotentialIncidentsTextSummary.cs" />
+    <Compile Include="ReadModel\Metadata.cs" />
+    <Compile Include="ReadModel\MonthlyHighPotentialIncidents.cs" />
     <Compile Include="ReferenceData.cs" />
     <Compile Include="ReferenceDataEnum.cs" />
     <Compile Include="ReferenceDataItem.cs" />

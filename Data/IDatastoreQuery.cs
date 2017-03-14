@@ -5,14 +5,20 @@ namespace Data
     /// <summary>
     /// The DatastoreQuery interface.
     /// </summary>
-    public interface IDatastoreQuery
+    /// <typeparam name="T">the return type
+    /// </typeparam>
+    /// <typeparam name="TK">the query
+    /// </typeparam>
+    public interface IDatastoreQuery<out T, in TK> where T : class
     {
         /// <summary>
         /// Runs the query.
         /// </summary>
-        /// <typeparam name="T">The domain object</typeparam>
         /// <param name="datamapper">The datastore.</param>
-        /// <returns>query result</returns>
-        IQueryable<T> RunQuery<T>(IDatamapper datamapper) where T : class;
+        /// <param name="queryParams">The query parameters.</param>
+        /// <returns>
+        /// query result
+        /// </returns>
+        IQueryable<T> RunQuery(IDatamapper datamapper, TK queryParams);
     }
 }

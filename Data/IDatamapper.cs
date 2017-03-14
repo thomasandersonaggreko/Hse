@@ -16,9 +16,13 @@ namespace Data
         /// Queries the specified query.
         /// </summary>
         /// <typeparam name="T">The domain object</typeparam>
+        /// <typeparam name="TK">The type of the k.</typeparam>
         /// <param name="query">The query.</param>
-        /// <returns>Queryable list of domain objects</returns>
-        IQueryable<T> Query<T>(IDatastoreQuery query) where T : class;
+        /// <param name="values">The values.</param>
+        /// <returns>
+        /// Queryable list of domain objects
+        /// </returns>
+        IQueryable<T> Query<T, TK>(IDatastoreQuery<T, TK> query, TK values) where T : class;
 
         /// <summary>
         /// Queries the specified query.

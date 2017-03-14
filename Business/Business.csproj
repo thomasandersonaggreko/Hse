@@ -71,6 +71,8 @@
     <Compile Include="IBusinessEvent.cs" />
     <Compile Include="INotifier.cs" />
     <Compile Include="IReferenceNumberGenerator.cs" />
+    <Compile Include="Queries\MonthlyHighPotentialIncidentReportQuery.cs" />
+    <Compile Include="Queries\MonthlyHighPotentialIncidentReportQueryHandler.cs" />
     <Compile Include="Queries\ReportListViewQueryHandler.cs">
       <DependentUpon>ReportListViewQuery.cs</DependentUpon>
     </Compile>

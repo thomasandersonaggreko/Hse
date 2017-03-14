@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <title></title>
+    <!-- global styles -->
+    <link href="Content/bootstrap.min.css?ver=@versionNumber" rel="stylesheet">
+    <link href="Content/animate.css" rel="stylesheet">
+    <!--<link href="Content/font-awesome.min.css" rel="stylesheet" />-->
+  
+    <link href="Content/style.css" rel="stylesheet" id="loadBefore">
+    <!--<link href="Content/plugins/iCheck/custom.css" rel="stylesheet" />
+    <link href="Content/plugins/textangular/textAngular.css" rel="stylesheet" />
+    <link href="Content/plugins/ngTagInputs/ng-tags-input.min.css" rel="stylesheet" />-->
+    <!-- custom styles -->
+    <link href="Content/site.css" rel="stylesheet" id="loadBefore">
+</head>
+<body ng-controller="Main as vm">
+
+    <!-- Wrapper-->
+    <div id="wrapper">
+
+        <!-- Navigation -->
+        <!--@Html.Partial(MVC.Shared.Views.ViewNames._Navigation)-->
+        <div ng-include="'App/shared/navigation.html'"></div>
+
+        <!-- Page wraper -->
+        <div id="page-wrapper" class="gray-bg">
+
+            <!-- Top Navbar -->
+            <!--@Html.Partial(MVC.Shared.Views.ViewNames._TopNavbar)-->
+
+            <!-- Main view  -->
+            <!--@RenderBody()-->
+            <div ui-view></div>
+            <!--<input type="text" ng-model="vm.food" placeholder="Enter food" />
+            <p>Sriracha sauce is great with {{vm.food}}!</p>-->
+
+            <!-- Footer -->
+            <!--@Html.Partial(MVC.Shared.Views.ViewNames._Footer)-->
+
+        </div>
+        <!-- End page wrapper-->
+
+    </div>
+<!-- End wrapper-->
+
+
+
+
+    
+    <!-- jQuery and Bootstrap -->
+    <!--<script src="Scripts/jquery-1.10.2.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="Scripts/plugins/pace/pace.min.js"></script>-->
+    
+<!-- Main Angular scripts-->
+<script src="Scripts/angular.min.js"></script>
+    <script src="Scripts/plugins/oclazyload/dist/ocLazyLoad.min.js"></script>
+    <script src="Scripts/angular-translate/angular-translate.min.js"></script>
+    <script src="Scripts/ui-router/angular-ui-router.min.js"></script>
+    
+
+<script src="app/app.module.js"></script>
+    <script src="app/main.js"></script>
+<script src="app/shared/SidebarCtrl.js"></script>
+    <script src="app/config.exceptionHandler.js"></script>
+<script src="app/config.js"></script>
+    <script src="app/reports/reportsService.js"></script>
+    <script src="app/reports/reportsCtrl.js"></script>
+</body>
+</html>

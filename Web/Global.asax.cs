@@ -18,6 +18,7 @@ namespace Web
 
     using HSEModel;
 
+    using Infrastructure;
     using Infrastructure.MessageBus;
 
     using LightInject;
@@ -28,13 +29,16 @@ namespace Web
         {
             var container = new ServiceContainer();
             container.RegisterControllers();
-            container.RegisterFrom<BusinessCompositionRoot>();
-            container.Register<IBus, InMemoryBus>();
-            container.Register<IHandlerFactory, HandlerFactory>();
+            //container.RegisterFrom<BusinessCompositionRoot>();
+            //container.Register<IBus, InMemoryBus>();
+            //container.Register<IHandlerFactory, HandlerFactory>();
 
             container.RegisterInstance(typeof(IServiceContainer), container);
+            container.SetupInfrastructureContext();
+            container.SetupBusinessContext();
+            container.RunStartup();
             //container.Register<INotifier, Notifier>();
-            
+
             //container.Register<IDateTimeProvider, DateTimeProvider>();
             //container.Register<IReferenceNumberGenerator, ReferenceNumberGenerator>();
             //container.Register<SubmitNewReportCommand<HighPotentialIncident>>();
@@ -47,12 +51,12 @@ namespace Web
 
             container.EnableMvc();
 
-            IEnumerable<IStartup> startups = container.GetAllInstances<IStartup>();
+            //IEnumerable<IStartup> startups = container.GetAllInstances<IStartup>();
 
-            foreach (IStartup startup in startups)
-            {
-                startup.Start();
-            }
+            //foreach (IStartup startup in startups)
+            //{
+            //    startup.Start();
+            //}
 
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);

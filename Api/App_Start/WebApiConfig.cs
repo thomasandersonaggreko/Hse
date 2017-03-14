@@ -5,6 +5,10 @@ using System.Web.Http;
 
 namespace Api
 {
+    using System.Net.Http.Formatting;
+
+    using Newtonsoft.Json;
+
     /// <summary>
     /// The web API config.
     /// </summary>
@@ -17,6 +21,11 @@ namespace Api
         public static void Register(HttpConfiguration config)
         {
             // Web API configuration and services
+            var formatter = new JsonMediaTypeFormatter();
+            formatter.SerializerSettings.PreserveReferencesHandling = PreserveReferencesHandling.Objects;
+
+            GlobalConfiguration.Configuration.Formatters.Clear();
+            GlobalConfiguration.Configuration.Formatters.Add(formatter);
 
             // Web API routes
             config.MapHttpAttributeRoutes();

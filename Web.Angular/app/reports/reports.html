@@ -1,0 +1,34 @@
+﻿<div data-ng-controller="reportsCtrl as vm">
+    <div class="row">
+        <div class="col-sm-12">
+            <select ng-model="vm.selectedReportType" ng-options="reportType.display for reportType in vm.reportTypes"></select>
+            <select ng-model="vm.selectedDate" ng-options="date.display for date in vm.dates"></select>
+            <button type="button" ng-click="vm.runReport()" class="btn btn-default">Run</button>
+        </div>
+    </div>
+    <div class="col-sm-4" data-ng-repeat="report in vm.reports">
+        <div class="ibox">
+            <div class="ibox-title">
+                <h5>{{report.LocationName}} - {{report.AreaName}} ({{report.IncidentDate}})</h5>
+            </div>
+            <div class="ibox-content">
+                <p>
+                    {{report.Description}}
+                </p>
+
+                <div class="row  m-t-sm">
+                    <div class="col-sm-6">
+                        <div class="font-bold">ACTUAL IMPACT</div>
+                        {{report.ActualImpact}}
+                    </div>
+
+                    <div class="col-sm-6">
+                        <div class="font-bold">POTENTIAL IMPACT</div>
+                        {{report.PotentialImpact}}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

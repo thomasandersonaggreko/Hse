@@ -1,6 +1,10 @@
 ﻿namespace Business.Queries
 {
+    using System.Linq;
+
     using Business.Sdk;
+
+    using Data;
 
     using HSEModel.Projections;
 

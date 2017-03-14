@@ -1,0 +1,17 @@
+﻿<nav class="navbar-default navbar-static-side" role="navigation" data-ng-controller="SidebarCtrl as vm">
+    <div class="sidebar-collapse">
+        <ul side-navigation class="nav" id="side-menu">
+            <li class="nav-header" data-ng-include data-src="'/Default/UserBlock'">
+            </li>
+            <li data-ng-repeat="r in vm.navRoutes" ng-class="{active: vm.isCurrent($state, r)}">
+                <a href="#{{r.url}}" target="_self">
+                    <i class="fa fa-{{r.icon}}"></i>
+                    <span class="nav-label">{{ r.label }}</span>
+                    <span ng-if="r.count" class="label label-info pull-right">{{r.count()}}</span>
+                </a>
+            </li>
+
+        </ul>
+
+    </div>
+</nav>

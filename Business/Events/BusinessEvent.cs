@@ -1,5 +1,7 @@
 ﻿namespace Business.Events
 {
+    using System.Security.Principal;
+
     using Contracts;
 
     using Infrastructure.MessageBus;
@@ -19,5 +21,13 @@
         /// The domain object.
         /// </value>
         public TObject DomainObject { get; set; }
+
+        /// <summary>
+        /// Gets or sets the executing user.
+        /// </summary>
+        /// <value>
+        /// The executing user.
+        /// </value>
+        public IPrincipal ExecutingUser { get; set; }
     }
 }

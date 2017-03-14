@@ -37,6 +37,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Model", "Model", "{4FF60700
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation Layer", "Presentation Layer", "{EF23082E-3315-4FCF-9715-19492036DE78}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AngularVisualStudioStarter", "..\..\..\Downloads\angular-vs2013-starter-master\angular-vs2013-starter-master\AngularVisualStudioStarter\AngularVisualStudioStarter.csproj", "{6EE3F303-7C59-46A2-B412-CAFC680D1941}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Web.Angular", "Web.Angular\Web.Angular.csproj", "{B8AE70EE-059A-494A-933B-B5F1D2B00AE8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -91,6 +95,14 @@ Global
 		{5DC40D54-C824-44A0-9C4F-CF157C3BAEF4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5DC40D54-C824-44A0-9C4F-CF157C3BAEF4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5DC40D54-C824-44A0-9C4F-CF157C3BAEF4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6EE3F303-7C59-46A2-B412-CAFC680D1941}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6EE3F303-7C59-46A2-B412-CAFC680D1941}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6EE3F303-7C59-46A2-B412-CAFC680D1941}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6EE3F303-7C59-46A2-B412-CAFC680D1941}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B8AE70EE-059A-494A-933B-B5F1D2B00AE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B8AE70EE-059A-494A-933B-B5F1D2B00AE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B8AE70EE-059A-494A-933B-B5F1D2B00AE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B8AE70EE-059A-494A-933B-B5F1D2B00AE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -105,5 +117,6 @@ Global
 		{DA77E270-D630-42BD-B30D-7E08A019A02C} = {EF23082E-3315-4FCF-9715-19492036DE78}
 		{545417AD-297F-4142-A51B-9415673E3EC8} = {845E71AA-7B3D-4B29-ABEC-46409580E750}
 		{686D9394-6CC5-4981-8943-DCD420F4C236} = {9456508C-59C0-4EB5-A71B-419FFF0AA05F}
+		{B8AE70EE-059A-494A-933B-B5F1D2B00AE8} = {EF23082E-3315-4FCF-9715-19492036DE78}
 	EndGlobalSection
 EndGlobal
