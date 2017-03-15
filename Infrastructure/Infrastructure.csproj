@@ -62,7 +62,8 @@
     <Compile Include="DateTime\DateTimeProvider.cs" />
     <Compile Include="DateTime\IDateTimeProvider.cs" />
     <Compile Include="InfrastructureContextFactory.cs" />
-    <Compile Include="Interceptor\Class1.cs" />
+    <Compile Include="Interceptor\LoggingAsyncInterceptor.cs" />
+    <Compile Include="Interceptor\LoggingInterceptor.cs" />
     <Compile Include="IStartup.cs" />
     <Compile Include="Logging\ILogger.cs" />
     <Compile Include="Logging\ILogManager.cs" />

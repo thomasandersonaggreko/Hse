@@ -1,34 +1,90 @@
 ﻿<div data-ng-controller="reportsCtrl as vm">
-    <div class="row">
-        <div class="col-sm-12">
-            <select ng-model="vm.selectedReportType" ng-options="reportType.display for reportType in vm.reportTypes"></select>
-            <select ng-model="vm.selectedDate" ng-options="date.display for date in vm.dates"></select>
-            <button type="button" ng-click="vm.runReport()" class="btn btn-default">Run</button>
-        </div>
-    </div>
-    <div class="col-sm-4" data-ng-repeat="report in vm.reports">
-        <div class="ibox">
+    <div class="col-sm-12">
+        <div class="ibox float-e-margins">
             <div class="ibox-title">
-                <h5>{{report.LocationName}} - {{report.AreaName}} ({{report.IncidentDate}})</h5>
+                <h5>Report filters</h5>
+                <div class="ibox-tools">
+                    <a class="collapse-link">
+                        <i class="fa fa-chevron-up"></i>
+                    </a>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-wrench"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li>
+                            <a href="#">Config option 1</a>
+                        </li>
+                        <li>
+                            <a href="#">Config option 2</a>
+                        </li>
+                    </ul>
+                    <a class="close-link">
+                        <i class="fa fa-times"></i>
+                    </a>
+                </div>
             </div>
             <div class="ibox-content">
-                <p>
-                    {{report.Description}}
-                </p>
-
-                <div class="row  m-t-sm">
-                    <div class="col-sm-6">
-                        <div class="font-bold">ACTUAL IMPACT</div>
-                        {{report.ActualImpact}}
-                    </div>
-
-                    <div class="col-sm-6">
-                        <div class="font-bold">POTENTIAL IMPACT</div>
-                        {{report.PotentialImpact}}
-                    </div>
+              
+                    <form role="form" class="form-inline">
+                      
+                            <div class="form-group col-sm-4">
+                                <label for="exampleInputEmail2">Report: </label>
+                                <select class="form-control" ng-model="vm.selectedReportType" ng-options="reportType.display for reportType in vm.reportTypes"></select>
+                            </div>
+                        
+                        
+                            <div class="form-group">
+                                <label for="exampleInputPassword2">Date: </label>
+                                <select class="form-control" ng-model="vm.selectedDate" ng-options="date.display for date in vm.dates"></select>
+                            </div>
+                        
+                        <button class="btn btn-white pull-right" ng-click="vm.runReport()" type="submit">Run</button>
+                    </form>
+               
                 </div>
+        </div>
+    </div>
+<!--<div class="row">
+    <div class="form-group">
+        <label class="col-sm-2 control-label">Select</label>
 
+        <div class="col-sm-4">
+            <select class="form-control" ng-model="vm.selectedReportType" ng-options="reportType.display for reportType in vm.reportTypes"></select>
+
+            <div class="col-sm-4">
+                <select class="form-control" ng-model="vm.selectedDate" ng-options="date.display for date in vm.dates"></select>
             </div>
         </div>
     </div>
+    <div class="col-sm-12">
+        <select class="form-control" ng-model="vm.selectedReportType" ng-options="reportType.display for reportType in vm.reportTypes"></select>
+        <select class="form-control" ng-model="vm.selectedDate" ng-options="date.display for date in vm.dates"></select>
+        <button type="button" ng-click="vm.runReport()" class="btn btn-default">Run</button>
+    </div>
+</div>-->
+<div class="col-sm-4" data-ng-repeat="report in vm.reports">
+    <div class="ibox">
+        <div class="ibox-title">
+            <h5>{{report.LocationName}} - {{report.AreaName}} ({{report.IncidentDate}})</h5>
+        </div>
+        <div class="ibox-content">
+            <p>
+                {{report.Description}}
+            </p>
+
+            <div class="row  m-t-sm">
+                <div class="col-sm-6">
+                    <div class="font-bold">ACTUAL IMPACT</div>
+                    {{report.ActualImpact}}
+                </div>
+
+                <div class="col-sm-6">
+                    <div class="font-bold">POTENTIAL IMPACT</div>
+                    {{report.PotentialImpact}}
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 </div>

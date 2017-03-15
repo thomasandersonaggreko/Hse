@@ -27,10 +27,11 @@
         /// </returns>
         protected override async Task InvokeDomainLogicAsync(SubmitNewReportCommand<TObject> request)
         {
-            request.DomainObject.ReferenceNumber = BusinessContext.ReferenceNumberGenerator.Generate();
-            this.SetAuditFields(request);
-            await BusinessContext.Datamapper.SaveAsync(request.DomainObject).ConfigureAwait(false);
-            var businessEvent = new NewReportSubmittedEvent<TObject>() { DomainObject = request.DomainObject, ExecutingUser = request.ExecutingUser };
+            this.GenerateReferenceNumber(request.DomainObject);
+            this.SetAuditFields(request.DomainObject, request.ExecutingUser.Identity.Name);
+            await this.SaveAsync(request.DomainObject).ConfigureAwait(false);
+
+            NewReportSubmittedEvent<TObject> businessEvent = new NewReportSubmittedEvent<TObject>() { DomainObject = request.DomainObject, ExecutingUser = request.ExecutingUser };
             BusinessContext.Notifier.Notify(businessEvent);
             await InfrastructureContext.Bus.PublishAsync(businessEvent).ConfigureAwait(false);
         }
@@ -38,11 +39,31 @@
         /// <summary>
         /// Sets the audit fields.
         /// </summary>
-        /// <param name="request">The request.</param>
-        private void SetAuditFields(SubmitNewReportCommand<TObject> request)
+        /// <param name="domainObject">The request.</param>
+        /// <param name="user">The user.</param>
+        private void SetAuditFields(TObject domainObject, string user)
         {
-            request.DomainObject.Created = InfrastructureContext.DateTimeProvider.Now;
-            request.DomainObject.CreatedBy = request.ExecutingUser.Identity.Name;
+            domainObject.Created = InfrastructureContext.DateTimeProvider.Now;
+            domainObject.CreatedBy = user;
+        }
+
+        /// <summary>
+        /// Generates the reference number.
+        /// </summary>
+        /// <param name="domainObject">The domain object.</param>
+        private void GenerateReferenceNumber(TObject domainObject)
+        {
+            domainObject.ReferenceNumber = BusinessContext.ReferenceNumberGenerator.Generate();
+        }
+
+        /// <summary>
+        /// Saves the asynchronous.
+        /// </summary>
+        /// <param name="domainObject">The domain object.</param>
+        /// <returns>returns the async handle</returns>
+        private Task SaveAsync(TObject domainObject)
+        {
+            return BusinessContext.Datamapper.SaveAsync(domainObject);
         }
     }
 }
